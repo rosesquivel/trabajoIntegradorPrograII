@@ -8,6 +8,8 @@
 	<link width="" rel="shortcut icon" href="./images/logo-mercado-liebre.jpg" />
 
 	<title> Mercado Liebre Argentina</title>
+	<!-- Logo -->
+	<link rel="shortcut icon" href="./images/logo-mercado-liebre.jpg">
 	<!-- Font Awesome Stylesheet -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 	<!-- Bootstrap Grid Stylesheet -->
@@ -28,9 +30,8 @@
 				</div>
 	
 				<div class="col-7 col-md-6">
-					<form action="" method="GET" class="search-form">
-						<input type="text" name="search" placeholder="Buscar productos, marcas y más"
-							class="search-form_input">
+					<form action="/products/searchresults" method="GET" class="search-form">
+						<input type="text" name="search" placeholder="Buscar productos, marcas y más" class="search-form_input">
 						<button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
 					</form>
 				</div>
@@ -50,7 +51,7 @@
 			<nav class="main-navbar">
 				<ul class="left-navbar">
 					<li><a href="/">Todos los productos</a></li>
-					<li><a href="/products/product-add">Cargar productos</a></li>
+					<li><a href="/products/add">Cargar productos</a></li>
 				</ul>
 	
 				<ul class="right-navbar">
