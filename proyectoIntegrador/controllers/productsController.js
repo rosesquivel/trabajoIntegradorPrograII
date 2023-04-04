@@ -1,6 +1,7 @@
+let db = require("../db/makeup");
 let productsController = {
-    products: function(req, res){
-        return res.render('product')
+    product: function(req, res){
+        return res.render('product', {lista: db.lista})
     }, 
     add: function(req, res){
         return res.render('product-add')
