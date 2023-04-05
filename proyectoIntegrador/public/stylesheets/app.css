@@ -301,7 +301,7 @@ hr {
 /*====== Product Detail ======*/
 .product-detail {
   background-color: #ffffff;
-  border-radius: 8px;
+  border-radius: 5px;
   overflow: hidden;
 }
 
@@ -323,7 +323,7 @@ hr {
 }
 
 .product-detail-description {
-  padding: 15px 15px 15px 40px;
+  padding: 15px 15px 15px 30px;
   font-size: 1.8em;
   line-height: 1.5;
 }
@@ -401,16 +401,17 @@ hr {
   padding: 30px 15px 15px 0;
 }
 .comments article{
-  margin-bottom: 7.5px;
-  padding-bottom: 7.5px;
+  margin-bottom: 7,5px;
+  padding-bottom: 70px;
   border-bottom: 1px solid #dcdcdc;
   display: flex;
   justify-content: space-between;
 }
 .comments img{
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
+  
   
 }
 .comments .data{
@@ -423,6 +424,12 @@ hr {
 }
 .comments .user{
   font-size: 1.7em;
+}
+/* agregar producto*/
+.det_agregarproducto{
+  display: flex;
+  background-color: red;
+
 }
 
 /*====== Formularios ======*/

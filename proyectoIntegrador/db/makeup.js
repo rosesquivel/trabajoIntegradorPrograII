@@ -8,9 +8,6 @@ let makeup = {
             shortDescription:'Labial voluminizador color nude rosado',
             color: 'Nude Rosado',
             //comments: 
-
-
-
         },
         {
             id: 2,
@@ -19,16 +16,6 @@ let makeup = {
             longDescription: 'El brillo de labios híbrido brinda un toque de tinte y de apariencia más completa. El innovador voluminizador contiene una mezcla de ingredientes, que incluyen aceite de raíz de jengibre y extracto de fruta de pimienta, diseñado para brindar una boca innegablemente espesa. La rica manteca de karité acondiciona mientras que el brillo húmedo maximiza el volumen visible. Es hora del efecto completo.',
             shortDescription:'Labial voluminizador color marrón',
             color: 'Marrón',
-            nombreUsuario1: 'tati',
-            comentario1: 'El producto es muy bueno y duradero.',
-            nombreUsuario2 : 'Rosario',
-            Comentario2: 'Espectacular!! me encantó!!.',
-            nombreUsuario3 : 'Aldana',
-            Comentario3: 'Muy bien queda. Lo recomiendo.',
-            nombreUsuario4 : 'Lourdes',
-            Comentario4: 'No me convence.',
-            nombreUsuario5 : 'Renata',
-            Comentario5: 'Re lindo el tono, ya lo tenia y es igual. Super recomendado.',
 
 
 
@@ -88,8 +75,33 @@ let makeup = {
 
 
     ],
-
+    comentarios: [
+        {id: 1,
+        nombreUsuario: 'Renata Lamas',
+        comentario: 'El producto es muy bueno y duradero.',
     
+        },
+        {
+        id:2,
+        nombreUsuario : 'Rosario Esquivel',
+        comentario: 'Espectacular!! me encantó!!.',
+        },
+        {id:3, 
+        nombreUsuario : 'Aldana Garnero' ,
+        comentario: 'Excelente. Se adhieren super bien.',
+        },
+        {
+        id:4,
+        nombreUsuario : 'Lourdes Camino',
+        comentario: 'No me convence.',
+        },
+        {
+        id:5,
+        nombreUsuario : 'Martina Cornet',
+        comentario: 'Re lindo el tono, ya lo tenia y es igual. Super recomendado.',
+        }
+
+    ]
 
 }
 

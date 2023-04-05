@@ -67,7 +67,7 @@
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%=lista[1].name%></h2> 
 			<p class="product-detail-description">
-				<a href="/products/add">Editar</a>
+				<a href="/products/add">Agregar producto</a>
 			</p>
 		</div>
 		<div class="product-detail">
@@ -81,47 +81,43 @@
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<article>
-							<img src="https://via.placeholder.com/35" alt="">
+							<img src="../images/users/c1.jpg"  alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/profile"><%=lista[2].nombreUsuario1%></a> </strong>
-								<%=lista[1].comentario1%>
-								 </p>
+								<strong> <a href="/profile"><%=comentarios[0].nombreUsuario%></a> </strong>
+								<%=comentarios[0].comentario%></p>
 							</div>
 						</article>
 						<article>
 							<img src="../images/users/c1.jpeg" alt="" >
 							<div class="data">
 								<p class="user">
-									<strong> <a href="/profile"> <%=lista[2].nombreUsuario2%></a> </strong>
-									<%=lista[1].comentario1%>
-									</p>
+									<strong> <a href="/profile">  <%=comentarios[1].nombreUsuario%> </a> </strong>
+									<%=comentarios[1].comentario%></p>
 							</div>
 						</article>
 						<article>
 							<img src="../images/users/c2.jpg" alt="" alt="">
 							<div class="data">
 								<p class="user">
-									<strong> <a href="/profile">Nombre usuario: <%=lista[2].nombreUsuario2%></a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									</p>
+									<strong> <a href="/profile"><%=comentarios[2].nombreUsuario%> : </a> </strong>
+									<%=comentarios[2].comentario%></p>
 							</div>
 						</article>
 						<article>
 							<img src="../images/users/c3.jpg" alt="">
 							<div class="data">
 								<p class="user">
-									<strong> <a href="/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet.</p>
+									<strong> <a href="/profile"><%=comentarios[3].nombreUsuario%> </a> </strong>
+									<%=comentarios[3].comentario%></p>
 							</div>
 						</article>
 						<article>
-							<img src="https://via.placeholder.com/35" alt="">
+							<img src="../images/users/c4.jpg"  alt="">
 							<div class="data">
 								<p class="user">
-									<strong> <a href="/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									Tempora doloribus enim aspernatur fugit corrupti suscipit sit dolore</p>
+									<strong> <a href="/profile"><%=comentarios[4].nombreUsuario%> </a> </strong>
+									<%=comentarios[4].comentario%></p>
 							</div>
 						</article>
 
