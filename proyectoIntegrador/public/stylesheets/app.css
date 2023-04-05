@@ -408,9 +408,10 @@ hr {
   justify-content: space-between;
 }
 .comments img{
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
+  
 }
 .comments .data{
   width: 85%;
