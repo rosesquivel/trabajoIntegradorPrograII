@@ -4,6 +4,12 @@ let indexController = {
         return res.render('index', {
             list: db.lista
         })
+    },
+    add: function(req,res){
+        return res.render('product-add')
+    },
+    results: function (req,res) {
+        return res.render('search-results')
     }
 };
 
