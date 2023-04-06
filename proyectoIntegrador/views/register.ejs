@@ -66,18 +66,38 @@
 	<!-- /Header -->
 
 	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Registrate</h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> <i>///////////////////////////////////////// <br> Acá va el formulario de registro. <br>
-			Debe cumplir con los puntos de la consigna y ser coherente con la tabla de la base de datos <br>
-			Eliminen estás líneas y coloquen el formulario. <br>
-			Recuerden todo lo que necesita tanto la etiqueta form como los campos input para operar correctamtente</i> <br>
-			////////////////
-			</h2>
+
+
+	<main class="container">
+		<section class="LOGIN">
+			<h2 class="products-titlee">REGÍSTRATE</h2>
+			<nav class="form-register ">
+				<form action="registrarse" method="GET" class="formulario">
+					<input class="controls" type="text" name="nombre" id="mobre" placeholder="Nombre">
+				</form>
+				<form>
+					<input class="controls"type="text" name="apellido" id="apellido" placeholder="Apellido">
+				</form>
+				<form>
+					<input class="controls" type="datetime" name="fechadenacimiento" id="fechadenacimiento" placeholder="Fecha de nacimiento">
+				</form>
+				<form>
+					<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono">
+				</form>
+				<form>
+					<input class="controls" type="numbers" name="number" id="documento" placeholder="Ingrese su documento">
+				</form>
+				<form>
+					<input class="controls" type="email" name="mail" id="mail" placeholder="Mail">
+				</form>
+				<form>
+					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña">
+				</form>
+
+				<button class="controls" type="submit">Enviar</button>
+			</nav>
+		</section>
+	</main>
 
 
 

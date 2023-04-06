@@ -451,6 +451,7 @@ hr {
   border: none;
   border: solid 1px var(--gray);
   padding: 0 15px;
+ 
 }
 
 .error{
@@ -463,6 +464,52 @@ textarea.form-input {
   resize: vertical;
   padding: 15px;
 }
+/*==== Registro =====*/
+/* .containerform{
+  display: flex;
+  align-items: center;
+  
+  background-color: #03264C;
+  width: 100%;
+  height: 500px;
+} */
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+
+.products-titlee{
+  display: flex;
+  justify-content: center;
+  font-size: 2.4em;
+  font-weight: 400;
+  color: var(--gray);
+}
+
+.form-register {
+  width: 400px;
+  background-color: #d2d2d2;
+  padding: 20px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 4px;
+  
+}
+
+.controls {
+  width: 100%;
+  background: #d6d6d6;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #0c0c0c;
+  font-size: 15px;
+  color: black;
+}
+
+
 
 /*====== Profile ======*/
 .info-usuario{
