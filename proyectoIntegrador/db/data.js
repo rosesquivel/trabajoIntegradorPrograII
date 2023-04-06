@@ -18,35 +18,27 @@ let data = {
     products: [
         {
             id: 1,
-            //image: ,
             name: 'GLOSS BOMB',
             longDescription: 'El brillo de labios híbrido brinda un toque de tinte y de apariencia más completa. El innovador voluminizador contiene una mezcla de ingredientes, que incluyen aceite de raíz de jengibre y extracto de fruta de pimienta, diseñado para brindar una boca innegablemente espesa. La rica manteca de karité acondiciona mientras que el brillo húmedo maximiza el volumen visible. Es hora del efecto completo.',
             shortDescription:'Labial voluminizador color nude rosado',
             color: 'Nude Rosado',
-            //comments: 
+            image:'../images/products/makeup/2.png'
         },
         {
             id: 2,
-            //image:,
             name: 'GLOSS BOMB',
             longDescription: 'El brillo de labios híbrido brinda un toque de tinte y de apariencia más completa. El innovador voluminizador contiene una mezcla de ingredientes, que incluyen aceite de raíz de jengibre y extracto de fruta de pimienta, diseñado para brindar una boca innegablemente espesa. La rica manteca de karité acondiciona mientras que el brillo húmedo maximiza el volumen visible. Es hora del efecto completo.',
             shortDescription:'Labial voluminizador color marrón',
             color: 'Marrón',
-
-
-
-
-            //comments: 
-
+            image:'../images/products/makeup/1.png'
         },
-        {id: 3,
-            //image: ,
+        {
+            id: 3,
             name: 'SNAP SHADOWS',
             longDescription: 'Una revolucionaria minipaleta de sombras de ojos portátil de 6 tonos ricos en una gama de acabados mate a brillante. Los colores son intensos y fáciles de mezclar. Combiná tus favoritos.',
             shortDescription: 'Paleta portable de sombras color nudes durazno cálido',
             color: 'Nudes Durazno Cálido',
-            //comments: 
-
+            image:'../images/products/makeup/8.png'
         },
         {id: 4,
             //image: ,
@@ -54,7 +46,7 @@ let data = {
             longDescription: 'Una revolucionaria minipaleta de sombras de ojos portátil de 6 tonos ricos en una gama de acabados mate a brillante. Los colores son intensos y fáciles de mezclar. Combiná tus favoritos.',
             shortDescription: 'Paleta portable de sombras color nudes clásicos',
             color: 'Nudes Clásicos',
-            //comments: 
+            image:'../images/products/makeup/7.png'
         },
         {id: 5,
             //image: ,
@@ -62,7 +54,7 @@ let data = {
             longDescription: 'Una base mate suave de larga duración que cuenta con tecnología adaptable al clima para combatir el calor, el sudor y el brillo. Salí todo el día o toda la noche, tu base siempre estará fresca.',
             shortDescription: 'Base matte de larga duración color claro medium',
             color: 'Claro Medium',
-            //comments: 
+            image:'../images/products/makeup/6.png'
         },
         {id: 6,
             //image: ,
@@ -70,7 +62,7 @@ let data = {
             longDescription: 'Una base mate suave de larga duración que cuenta con tecnología adaptable al clima para combatir el calor, el sudor y el brillo. Salí todo el día o toda la noche, tu base siempre estará fresca.',
             shortDescription:'Base matte de larga duración color profundo',
             color: 'Profundo',
-            //comments: 
+            image:'../images/products/makeup/5.png'
         },
         {id: 7,
             //image: ,
@@ -78,7 +70,7 @@ let data = {
             longDescription: 'Un polvo bronceador de larga duración y resistente a la transpiración. Brillo instantáneo, combinable y fácil de usar.',
             shortDescription:'Polvo bronzeador color marrón medium',
             color: 'Marrón Medium',
-            //comments: 
+            image:'../images/products/makeup/4.png'
         },
         {id: 8,
             //image: ,
@@ -86,7 +78,7 @@ let data = {
             longDescription: 'Un iluminador híbrido en crema-polvo de larga duración y ligero con un acabado hipermetálico, en una colorida gama de tonos que desafían las reglas diseñados para resaltar todos los tonos de piel. Infinitas formas de brillar.',
             shortDescription: 'Iluminador crema-polvo color rubí',
             color: 'Rubí',
-            //comments: 
+            image:'../images/products/makeup/3.png'
         },
 
 

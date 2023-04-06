@@ -3,7 +3,7 @@ let productsController = {
     product: function(req, res){
         return res.render('product', 
         {
-            products: db.products,
+            product: db.products,
             comments: db.comments,
         })
     }, 

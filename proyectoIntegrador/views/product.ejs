@@ -65,7 +65,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%=products[1].name%></h2> 
+			<h2 class="products-title"><%=product[1].name%></h2> 
 			<p class="product-detail-description">
 				<a href="/products/add">Agregar producto</a>
 			</p>
@@ -73,9 +73,9 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="../images/products/makeup/1.png" alt="<%=products[1].name%>" class="product-detail-img">
+					<img src=<%=product[1].image%> alt="<%=product[1].name%>" class="product-detail-img">
 					<p class="product-detail-description">
-						<%=products[1].longDescription%>
+						<%=product[1].longDescription%>
 					</p>
 				</article>
 				<div class="col-12 col-lg-4">
