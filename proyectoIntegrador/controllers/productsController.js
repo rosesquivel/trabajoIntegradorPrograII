@@ -1,9 +1,10 @@
-let db = require("../db/makeup");
+let db = require('../db/data');
 let productsController = {
     product: function(req, res){
         return res.render('product', 
-        {lista: db.lista,
-         comentarios: db.comentarios
+        {
+            products: db.products,
+            comments: db.comments,
         })
     }, 
     add: function(req, res){

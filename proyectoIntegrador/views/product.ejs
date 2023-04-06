@@ -65,7 +65,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%=lista[1].name%></h2> 
+			<h2 class="products-title"><%=products[1].name%></h2> 
 			<p class="product-detail-description">
 				<a href="/products/add">Agregar producto</a>
 			</p>
@@ -73,51 +73,56 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="../images/products/makeup/1.png" alt="<%=lista[1].name%>" class="product-detail-img">
+					<img src="../images/products/makeup/1.png" alt="<%=products[1].name%>" class="product-detail-img">
 					<p class="product-detail-description">
-						<%=lista[1].longDescription%>
+						<%=products[1].longDescription%>
 					</p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<article>
-							<img src="../images/users/c1.jpg"  alt="">
+							<img src='<%=comments[0].profilePicture%>'  alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/profile"><%=comentarios[0].nombreUsuario%></a> </strong>
-								<%=comentarios[0].comentario%></p>
+								<strong> <a href="/profile"><%=comments[0].username%></a> </strong>
+								</p>
+								<p class="user"><%=comments[0].comment%></p>
 							</div>
 						</article>
 						<article>
-							<img src="../images/users/c1.jpeg" alt="" >
+							<img src='<%=comments[1].profilePicture%>' alt="" >
 							<div class="data">
 								<p class="user">
-									<strong> <a href="/profile">  <%=comentarios[1].nombreUsuario%> </a> </strong>
-									<%=comentarios[1].comentario%></p>
+									<strong> <a href="/profile">  <%=comments[1].username%> </a> </strong>
+								</p>
+								<p class="user"><%=comments[1].comment%></p>
 							</div>
 						</article>
 						<article>
-							<img src="../images/users/c2.jpg" alt="" alt="">
+							<img src='<%=comments[2].profilePicture%>' alt="" alt="">
 							<div class="data">
 								<p class="user">
-									<strong> <a href="/profile"><%=comentarios[2].nombreUsuario%> : </a> </strong>
-									<%=comentarios[2].comentario%></p>
+									<strong> <a href="/profile"><%=comments[2].username%></a> </strong>
+								</p>
+								<p class="user"><%=comments[2].comment%></p>
 							</div>
 						</article>
 						<article>
-							<img src="../images/users/c3.jpg" alt="">
+							<img src='<%=comments[3].profilePicture%>' alt="">
 							<div class="data">
 								<p class="user">
-									<strong> <a href="/profile"><%=comentarios[3].nombreUsuario%> </a> </strong>
-									<%=comentarios[3].comentario%></p>
+									<strong> <a href="/profile"><%=comments[3].username%> </a> </strong>
+								</p>
+								<p class="user"><%=comments[3].comment%></p>
 							</div>
 						</article>
 						<article>
-							<img src="../images/users/c4.jpg"  alt="">
+							<img src='<%=comments[4].profilePicture%>'  alt="">
 							<div class="data">
 								<p class="user">
-									<strong> <a href="/profile"><%=comentarios[4].nombreUsuario%> </a> </strong>
-									<%=comentarios[4].comentario%></p>
+									<strong> <a href="/profile"><%=comments[4].username%></a> </strong>
+								</p>
+								<p class="user"><%=comments[4].comment%></p>
 							</div>
 						</article>
 

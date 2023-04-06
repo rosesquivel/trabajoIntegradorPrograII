@@ -1,8 +1,8 @@
-let db = require('../db/makeup');
+let db = require('../db/data');
 let indexController = {
     index: function (req, res) {
         return res.render('index', {
-            list: db.lista
+            product: db.products
         })
     },
     add: function(req,res){

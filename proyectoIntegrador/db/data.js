@@ -1,5 +1,21 @@
-let makeup = {
-    lista: [
+let data = {
+    users: [
+        {
+            id: 1,
+            email: '',
+            username: '',
+            password: '',
+            birthdate: '',
+            dni: 45342890
+        }, 
+        {
+
+        },
+        {
+
+        }
+    ],
+    products: [
         {
             id: 1,
             //image: ,
@@ -75,37 +91,41 @@ let makeup = {
 
 
     ],
-    comentarios: [
+    comments: [
         {id: 1,
-        nombreUsuario: 'Renata Lamas',
-        comentario: 'El producto es muy bueno y duradero.',
+        username: 'Alberta Cardozo',
+        comment: 'El producto es muy bueno y duradero',
+        profilePicture: '../images/users/user0.jpg'
     
         },
         {
         id:2,
-        nombreUsuario : 'Rosario Esquivel',
-        comentario: 'Espectacular!! me encantó!!.',
+        username : 'Marcela Pinto',
+        comment: 'Espectacular, me encantó!!',
+        profilePicture: '../images/users/user1.jpg'
         },
         {id:3, 
-        nombreUsuario : 'Aldana Garnero' ,
-        comentario: 'Excelente. Se adhieren super bien.',
+        username : 'Eva Lobo' ,
+        comment: 'Excelente. Se adhieren super bien',
+        profilePicture: '../images/users/user2.jpg'
         },
         {
         id:4,
-        nombreUsuario : 'Lourdes Camino',
-        comentario: 'No me convence.',
+        username : 'Oriana Velázquez',
+        comment: 'No me convenció',
+        profilePicture: '../images/users/user3.jpg'
         },
         {
         id:5,
-        nombreUsuario : 'Martina Cornet',
-        comentario: 'Re lindo el tono, ya lo tenia y es igual. Super recomendado.',
+        username : 'Bianca Rivero',
+        comment: 'Re lindo el tono, ya lo tenía y es igual. Super recomendado',
+        profilePicture: '../images/users/user4.jpg'
         }
 
     ]
-
 }
 
 
 
 
-module.exports = makeup;
+module.exports = data;

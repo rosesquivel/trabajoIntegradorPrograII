@@ -402,7 +402,7 @@ hr {
 }
 .comments article{
   margin-bottom: 7,5px;
-  padding-bottom: 70px;
+  padding: 10px 0 7px 0;
   border-bottom: 1px solid #dcdcdc;
   display: flex;
   justify-content: space-between;
@@ -424,6 +424,8 @@ hr {
 }
 .comments .user{
   font-size: 1.7em;
+  margin-left: 10px;
+
 }
 /* agregar producto*/
 .det_agregarproducto{
