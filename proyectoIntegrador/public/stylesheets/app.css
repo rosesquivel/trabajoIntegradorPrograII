@@ -43,6 +43,7 @@ a {
   display: inline-block;
   text-decoration: none;
   color: inherit;
+  
 }
 
 figure {
@@ -68,7 +69,7 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: var(--yellow);
+  background-color: #702c34;
 }
 
 .main-header_home-link,
@@ -80,6 +81,7 @@ hr {
   font-size: 1.5em;
   margin-top: 20px;
   text-align: center;
+  color: white;
 }
 
 .search-form {
@@ -172,6 +174,8 @@ hr {
   font-size: 2.4em;
   font-weight: 400;
   color: var(--gray);
+  display: flex;
+  justify-content: center;
 }
 
 .product-box {
@@ -480,22 +484,13 @@ textarea.form-input {
 } */
 
 
-.products-titlee{
-  display: flex;
-  justify-content: center;
-  font-size: 2.4em;
-  font-weight: 400;
-  color: var(--gray);
-}
 
 .form-register {
-  width: 400px;
+  width: 450px;
   background-color: #d2d2d2;
   padding: 20px;
-  margin: auto;
-  margin-top: 50px;
   border-radius: 4px;
-  
+  margin: auto;
 }
 
 .controls {
@@ -503,10 +498,14 @@ textarea.form-input {
   background: #d6d6d6;
   padding: 10px;
   border-radius: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   border: 1px solid #0c0c0c;
   font-size: 15px;
   color: black;
+}
+
+.recordarme{
+  font-size: 15px;
 }
 
 

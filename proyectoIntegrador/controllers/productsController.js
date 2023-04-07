@@ -13,7 +13,6 @@ let productsController = {
     results: function(req, res){
         return res.render('search-results')
     }
-
 }
 
 module.exports = productsController;

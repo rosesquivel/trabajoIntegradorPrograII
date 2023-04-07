@@ -1,106 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-
-<%-include('./partials/header')%>
+<%-include('./partials/head')%>
 
 <body>
-	<!-- Header -->
-	<header class="main-header">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-5 col-md-2">
-					<a href="/" class="main-header_home-link">
-						<img src="/images/logo-mercado-liebre.svg">
-					</a>
-				</div>
-	
-				<div class="col-7 col-md-6">
-					<form action="/products/searchresults" method="GET" class="search-form">
-						<input type="text" name="search" placeholder="Buscar productos, marcas y más" class="search-form_input">
-						<button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
-					</form>
-				</div>
-	
-				<div class="col-12 col-md-4">
-					<a class="main-header_credit-link">
-						<i class="fas fa-hand-holding-usd"></i>
-						Todas las opiniones en un solo lugar.
-					</a>
+<!-- Include Header -->
+<%-include('./partials/header')%>
+
+	<!-- Formulario  -->
+	<main class="container">
+		<div class="container products-wrapper">
+			<div class="row">
+				<div class="col-12">
+					<h2 class="products-title">Regístrate</h2>
 				</div>
 			</div>
-	
-			<button class="btn-toggle-navbar">
-				<i class="fas fa-bars"></i>
-			</button>
-	
-			<nav class="main-navbar">
-				<ul class="left-navbar">
-					<li><a href="/">Todos los productos</a></li>
-					<!-- solo logueado <li><a href="">Cargar productos</a></li> -->
-				</ul>
-	
-				<ul class="right-navbar">
-					<!-- Solo logueado <li><a href="profile.ejs">
-								Nombre del usuario <i class="fas fa-user"></i>
-							</a>
-						</li>
-						<li>
-							<form action="" method="post">
-								<button class="logout" type="submit">
-									Cerrar sesión <i class="fas fa-sign-in-alt"></i>
-								</button>
-							</form>
-						</li> -->
-					<li>
-						<a href="/profile/register">Creá tu cuenta <i class="far fa-address-card"></i>
-						</a>
-					</li>
-					<li>
-						<a href="/profile/login">Ingresá <i class="fas fa-sign-in-alt"></i></a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<!-- /Header -->
-
-	<!-- Novedades -->
-
-
-	<main class="container">
-		<section class="LOGIN">
-			<h2 class="products-titlee">REGÍSTRATE</h2>
-			<nav class="form-register ">
-				<form action="registrarse" method="GET" class="formulario">
-					<input class="controls" type="text" name="nombre" id="mobre" placeholder="Nombre">
-				</form>
-				<form>
-					<input class="controls"type="text" name="apellido" id="apellido" placeholder="Apellido">
-				</form>
-				<form>
-					<input class="controls" type="datetime" name="fechadenacimiento" id="fechadenacimiento" placeholder="Fecha de nacimiento">
-				</form>
-				<form>
-					<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono">
-				</form>
-				<form>
-					<input class="controls" type="numbers" name="number" id="documento" placeholder="Ingrese su documento">
-				</form>
-				<form>
-					<input class="controls" type="email" name="mail" id="mail" placeholder="Mail">
-				</form>
-				<form>
-					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña">
-				</form>
-
+			
+			<form class="form-register" action="./profile.ejs" method="GET">
+				<input class="controls" type="text" name="nombre" id="mobre" placeholder="Nombre">
+				<input class="controls"type="text" name="apellido" id="apellido" placeholder="Apellido">
+				<input class="controls" type="date" name="fechadenacimiento" id="fechadenacimiento" placeholder="Fecha de nacimiento">
+				<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono">
+				<input class="controls" type="numbers" name="number" id="documento" placeholder="Documento">
+				<input class="controls" type="email" name="mail" id="mail" placeholder="Mail">
+				<input class="controls" type="password" name="password" id="password" placeholder="Contraseña">
 				<button class="controls" type="submit">Enviar</button>
-			</nav>
-		</section>
+			</form>
+		</div>
 	</main>
-
-
-
-</body>
+			
+<!-- Include Footer -->
 <%-include('./partials/footer')%>
+</body>
+
 </html>
