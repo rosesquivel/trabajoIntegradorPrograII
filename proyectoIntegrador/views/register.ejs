@@ -16,14 +16,15 @@
 				</div>
 			</div>
 			
-			<form class="form-register" action="./profile.ejs" method="GET">
-				<input class="controls" type="text" name="nombre" id="mobre" placeholder="Nombre">
-				<input class="controls"type="text" name="apellido" id="apellido" placeholder="Apellido">
-				<input class="controls" type="date" name="fechadenacimiento" id="fechadenacimiento" placeholder="Fecha de nacimiento">
-				<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono">
+			<form class="form-register" action="/" method="GET">
+				<input class="controls" type="text" name="nombre" id="mobre" placeholder="Nombre" required>
+				<input class="controls"type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+				<input class="controls" type="date" name="fechadenacimiento" id="fechadenacimiento" placeholder="Fecha de nacimiento" required>
+				<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono" required>
 				<input class="controls" type="numbers" name="number" id="documento" placeholder="Documento">
-				<input class="controls" type="email" name="mail" id="mail" placeholder="Mail">
-				<input class="controls" type="password" name="password" id="password" placeholder="Contraseña">
+				<input class="controls" type="email" name="mail" id="mail" placeholder="Mail" required>
+				<input class="controls" type="password" name="password" id="password" placeholder="Contraseña" required>
+				<input class="controls" type="file" name="images" id="images" placeholder="Inserte una imagen" required>
 				<button class="controls" type="submit">Enviar</button>
 			</form>
 		</div>

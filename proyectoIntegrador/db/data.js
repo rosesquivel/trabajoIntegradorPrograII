@@ -2,18 +2,17 @@ let data = {
     users: [
         {
             id: 1,
-            email: '',
-            username: '',
-            password: '',
-            birthdate: '',
-            dni: 45342890
-        }, 
-        {
-
+            username: 'Bianca Rivero',
+            birthdate: '14-10-2003',
+            phoneNumber: 3406562172,
+            dni: 45342890,
+            email: 'brivero@gmail.com',
+            password: 'udesa123',
+            profilePicture: '../images/users/user4.jpg',
+            follows: '200 seguidores',
+            cantproducts: '8 productos',
+            comments: '300 comentarios'
         },
-        {
-
-        }
     ],
     products: [
         {
@@ -40,40 +39,40 @@ let data = {
             color: 'Nudes Durazno Cálido',
             image:'../images/products/makeup/8.png'
         },
-        {id: 4,
-            //image: ,
+        {
+            id: 4,
             name: 'SNAP SHADOWS',
             longDescription: 'Una revolucionaria minipaleta de sombras de ojos portátil de 6 tonos ricos en una gama de acabados mate a brillante. Los colores son intensos y fáciles de mezclar. Combiná tus favoritos.',
             shortDescription: 'Paleta portable de sombras color nudes clásicos',
             color: 'Nudes Clásicos',
             image:'../images/products/makeup/7.png'
         },
-        {id: 5,
-            //image: ,
+        {
+            id: 5,
             name: "BASE PRO FILT'R",
             longDescription: 'Una base mate suave de larga duración que cuenta con tecnología adaptable al clima para combatir el calor, el sudor y el brillo. Salí todo el día o toda la noche, tu base siempre estará fresca.',
             shortDescription: 'Base matte de larga duración color claro medium',
             color: 'Claro Medium',
             image:'../images/products/makeup/6.png'
         },
-        {id: 6,
-            //image: ,
+        {
+            id: 6,
             name: "BASE PRO FILT'R",
             longDescription: 'Una base mate suave de larga duración que cuenta con tecnología adaptable al clima para combatir el calor, el sudor y el brillo. Salí todo el día o toda la noche, tu base siempre estará fresca.',
             shortDescription:'Base matte de larga duración color profundo',
             color: 'Profundo',
             image:'../images/products/makeup/5.png'
         },
-        {id: 7,
-            //image: ,
+        {
+            id: 7,
             name: "BRONZER",
             longDescription: 'Un polvo bronceador de larga duración y resistente a la transpiración. Brillo instantáneo, combinable y fácil de usar.',
             shortDescription:'Polvo bronzeador color marrón medium',
             color: 'Marrón Medium',
             image:'../images/products/makeup/4.png'
         },
-        {id: 8,
-            //image: ,
+        {
+            id: 8,
             name: 'HIGHLIGHTER',
             longDescription: 'Un iluminador híbrido en crema-polvo de larga duración y ligero con un acabado hipermetálico, en una colorida gama de tonos que desafían las reglas diseñados para resaltar todos los tonos de piel. Infinitas formas de brillar.',
             shortDescription: 'Iluminador crema-polvo color rubí',
@@ -81,43 +80,40 @@ let data = {
             image:'../images/products/makeup/3.png'
         },
 
-
     ],
     comments: [
-        {id: 1,
-        username: 'Alberta Cardozo',
-        comment: 'El producto es muy bueno y duradero',
-        profilePicture: '../images/users/user0.jpg'
+        {
+            id: 1,
+            username: 'Alberta Cardozo',
+            comment: 'El producto es muy bueno y duradero',
+            profilePicture: '../images/users/user0.jpg'
     
         },
         {
-        id:2,
-        username : 'Marcela Pinto',
-        comment: 'Espectacular, me encantó!!',
-        profilePicture: '../images/users/user1.jpg'
-        },
-        {id:3, 
-        username : 'Eva Lobo' ,
-        comment: 'Excelente. Se adhieren super bien',
-        profilePicture: '../images/users/user2.jpg'
+            id:2,
+            username : 'Marcela Pinto',
+            comment: 'Espectacular, me encantó!!',
+            profilePicture: '../images/users/user1.jpg'
         },
         {
-        id:4,
-        username : 'Oriana Velázquez',
-        comment: 'No me convenció',
-        profilePicture: '../images/users/user3.jpg'
+            id:3, 
+            username : 'Eva Lobo' ,
+            comment: 'Excelente. Se adhieren super bien',
+            profilePicture: '../images/users/user2.jpg'
         },
         {
-        id:5,
-        username : 'Bianca Rivero',
-        comment: 'Re lindo el tono, ya lo tenía y es igual. Super recomendado',
-        profilePicture: '../images/users/user4.jpg'
+            id:4,
+            username : 'Oriana Velázquez',
+            comment: 'No me convenció',
+            profilePicture: '../images/users/user3.jpg'
+        },
+        {
+            id:5,
+            username : 'Bianca Rivero',
+            comment: 'Re lindo el tono, ya lo tenía y es igual. Super recomendado',
+            profilePicture: '../images/users/user4.jpg'
         }
-
     ]
 }
-
-
-
 
 module.exports = data;

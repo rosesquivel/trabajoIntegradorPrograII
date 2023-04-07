@@ -2,7 +2,8 @@ let db = require('../db/data');
 let profileController = {
     profile: function(req, res){
         return res.render('profile', {
-            product: db.products
+            product: db.products,
+            users: db.users
         })
     },
     edit: function(req, res){

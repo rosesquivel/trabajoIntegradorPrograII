@@ -23,56 +23,23 @@
 						<%=product[1].longDescription%>
 					</p>
 				</article>
+
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<article>
-							<img src='<%=comments[0].profilePicture%>'  alt="">
-							<div class="data">
-								<p class="user">
-								<strong> <a href="/profile"><%=comments[0].username%></a> </strong>
-								</p>
-								<p class="user"><%=comments[0].comment%></p>
-							</div>
-						</article>
-						<article>
-							<img src='<%=comments[1].profilePicture%>' alt="" >
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile">  <%=comments[1].username%> </a> </strong>
-								</p>
-								<p class="user"><%=comments[1].comment%></p>
-							</div>
-						</article>
-						<article>
-							<img src='<%=comments[2].profilePicture%>' alt="" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile"><%=comments[2].username%></a> </strong>
-								</p>
-								<p class="user"><%=comments[2].comment%></p>
-							</div>
-						</article>
-						<article>
-							<img src='<%=comments[3].profilePicture%>' alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile"><%=comments[3].username%> </a> </strong>
-								</p>
-								<p class="user"><%=comments[3].comment%></p>
-							</div>
-						</article>
-						<article>
-							<img src='<%=comments[4].profilePicture%>'  alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/profile"><%=comments[4].username%></a> </strong>
-								</p>
-								<p class="user"><%=comments[4].comment%></p>
-							</div>
-						</article>
-
+						<% for(let i=0; i<5; i++){ %>
+							<article>
+								<img src='<%=comments[i].profilePicture%>'  alt="">
+								<div class="data">
+									<p class="user">
+									<strong> <a href="/profile"><%=comments[i].username%></a> </strong>
+									</p>
+									<p class="user"><%=comments[i].comment%></p>
+								</div>
+							</article>
+						<% } %>
 					</section>
-					<form class="form" action="" method="POST">
+
+					<form class="form" action="/products" method="GET">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
@@ -81,7 +48,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- /product detail -->
 
 <!-- Include Footer -->
 <%-include('./partials/footer')%>

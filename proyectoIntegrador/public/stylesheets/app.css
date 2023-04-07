@@ -69,7 +69,7 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: #702c34;
+  background-color: #D5B1A8;
 }
 
 .main-header_home-link,
@@ -374,7 +374,7 @@ hr {
 }
 
 .buy-now-button {
-  background-color: var(--light-blue);
+  background-color: #5c2927;
   font-size: 1.6em;
   color: #ffffff;
   padding: 15px;
@@ -527,12 +527,16 @@ textarea.form-input {
 }
 
 .btn{
-  background-color: #1259c3;
+  background-color: #5C2926;
   padding: 10px 20px;
   border-radius: 4px;
   color: #fff;
 }
 
+.email{
+  margin-top: 0px;
+  margin-bottom: 12px;
+}
 
 /*====== Media-Queries ======*/
 @media (min-width: 768px) {

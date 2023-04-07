@@ -11,7 +11,7 @@ let productsController = {
         return res.render('product-add')
     },
     results: function(req, res){
-        return res.render('search-results')
+        return res.render('search-results',  {product: db.products})
     }
 }
 
