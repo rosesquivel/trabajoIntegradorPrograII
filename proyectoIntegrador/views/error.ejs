@@ -1,3 +1,15 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+
+<%if (error.status== 404){ %>
+    <div class="error404">
+    <img src='../images/jaja.png' alt="error 404">   
+    </div>
+    <%}else {%>
+        <h1><%= message %></h1>
+        <h2><%= error.status %></h2>
+        <pre><%= error.stack %></pre>
+
+    <%}%>
+
+
+
+
