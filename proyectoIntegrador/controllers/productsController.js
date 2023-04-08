@@ -1,8 +1,7 @@
 let db = require('../db/data');
 let productsController = {
     product: function(req, res){
-        return res.render('product', 
-        {
+        return res.render('product', {
             product: db.products,
             comments: db.comments,
         })
@@ -11,8 +10,10 @@ let productsController = {
         return res.render('product-add')
     },
     results: function(req, res){
-        return res.render('search-results',  {product: db.products})
+        return res.render('search-results', {
+            product: db.products
+        })
     }
-}
+};
 
 module.exports = productsController;

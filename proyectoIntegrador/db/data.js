@@ -198,6 +198,6 @@ let data = {
             profilePicture: '../images/users/user4.jpg'
         }
     ]
-}
+};
 
 module.exports = data;

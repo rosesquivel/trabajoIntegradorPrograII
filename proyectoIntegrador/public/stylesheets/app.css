@@ -13,7 +13,6 @@
   --base-font-family: 'Roboto', sans-serif
 }
 
-
 /*====== Basics ======*/
 * {
   box-sizing: border-box;
@@ -43,7 +42,6 @@ a {
   display: inline-block;
   text-decoration: none;
   color: inherit;
-  
 }
 
 figure {
@@ -81,7 +79,7 @@ hr {
   font-size: 1.5em;
   margin-top: 20px;
   text-align: center;
-  color: white;
+  color: inherit;
 }
 
 .search-form {
@@ -151,7 +149,6 @@ hr {
   padding: 5px 0;
   border-bottom: solid 1px var(--gray);
 }
-
 
 
 /*====== Banner ======*/
@@ -319,8 +316,8 @@ hr {
 
 .product-detail-info {
   border-right: 1px solid var(--light-gray);
-  padding: 15px;
-  /* height: 100%; */
+  padding: 20px;
+  margin-top: 30px;
 }
 
 .product-detail-title {
@@ -331,7 +328,8 @@ hr {
 .product-detail-description {
   padding: 15px 15px 15px 30px;
   font-size: 1.8em;
-  line-height: 1.5;
+  line-height: 1.4;
+  text-align: justify;
 }
 
 .product-detail-price {
@@ -405,6 +403,7 @@ hr {
 }
 .comments {
   padding: 30px 15px 15px 0;
+  
 }
 .comments article{
   margin-bottom: 7,5px;
@@ -417,11 +416,14 @@ hr {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  
-  
+  margin-top: 12px;
+  margin-bottom: 5px;
 }
+
 .comments .data{
   width: 85%;
+  margin-bottom: 9px;
+  margin-top: 9px;
   
 }
 .comments p{
@@ -431,13 +433,14 @@ hr {
 .comments .user{
   font-size: 1.7em;
   margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 6px;
 
 }
 /* agregar producto*/
 .det_agregarproducto{
   display: flex;
   background-color: red;
-
 }
 
 /*====== Formularios ======*/

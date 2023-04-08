@@ -4,10 +4,7 @@ let indexController = {
         return res.render('index', {
             product: db.products
         })
-    },
-   
+    }
 };
-
-
 
 module.exports = indexController;
