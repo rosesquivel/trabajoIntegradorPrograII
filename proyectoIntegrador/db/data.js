@@ -3,8 +3,8 @@ let data = {
         {
             id: 1,
             username: 'Bianca Rivero',
-            birthdate: '14-10-2003',
-            phoneNumber: 3406562172,
+            birthdate: 2003-10-14,
+            phoneNumber: 3493404974,
             dni: 45342890,
             email: 'brivero@gmail.com',
             password: 'udesa123',
@@ -13,6 +13,59 @@ let data = {
             cantproducts: '8 productos',
             comments: '300 comentarios'
         },
+        {
+            id: 2,
+            username: 'Alberta Cardozo',
+            birthdate: 2003-11-11,
+            phoneNumber: 3493562172,
+            dni: 43537466,
+            email: 'acardozo@gmail.com',
+            password: 'lunaresAmarillos88',
+            profilePicture: '../images/users/user0.jpg',
+            follows: '35 seguidores',
+            cantproducts: '2 productos',
+            comments: '6 comentarios'
+        },
+        {
+            id: 3,
+            username: 'Eva Lobo',
+            birthdate: 2003-9-23,
+            phoneNumber: 3493663946,
+            dni: 45268446,
+            email: 'eloboo@gmail.com',
+            password: 'Mariposadefideos.58',
+            profilePicture: '../images/users/user2.jpg',
+            follows: '101 seguidores',
+            cantproducts: '7 productos',
+            comments: '45 comentarios'
+        },
+        {
+            id: 4,
+            username: 'Marcela Pinto',
+            birthdate: 2003-04-02,
+            phoneNumber: 3493590666,
+            dni: 44996353,
+            email: 'mpinto@gmail.com',
+            password: 'claritaylolo_77',
+            profilePicture: '../images/users/user1.jpg',
+            follows: '0 seguidores',
+            cantproducts: '13 productos',
+            comments: '64 comentarios'
+        },
+        {
+            id: 5,
+            username: 'Oriana Velázquez',
+            birthdate: 2003-08-6,
+            phoneNumber: 3493442924,
+            dni: 45268434,
+            email: 'ovelazquez@gmail.com',
+            password: '18dDiciembre.2022',
+            profilePicture: '../images/users/user3.jpg',
+            follows: '59 seguidores',
+            cantproducts: '15 productos',
+            comments: '100 comentarios'
+        }
+    
     ],
     products: [
         {
