@@ -7,7 +7,7 @@
   --yellow: #EAC926;
   --dark-blue: #03264C;
   --light-blue: #1259c3;
-  --gray: #666666;
+  /* --gray: #666666; */
   --light-gray: #ebebeb;
   --green: #39b54a;
   --base-font-family: 'Montserrat'
@@ -28,7 +28,8 @@ body {
 body {
   font-family: var(--base-font-family);
   font-weight: 300;
-  background-color: rgb(228, 224, 224);
+  /* background-color: rgb(228, 224, 224); */
+  background-color: rgb(247, 230, 230) ;
 }
 
 ul,
@@ -283,10 +284,11 @@ hr {
   color: var(--gray);
   font-size: 2.4em;
   font-weight: 400;
+  color: #bd9393 ;
 }
 
 .footer-data p {
-  color: var(--gray);
+  color: rgb(178, 147, 152);
   font-size: 1.5em;
   font-weight: 300;
 }
@@ -517,6 +519,33 @@ textarea.form-input {
   font-size: 15px;
 }
 
+/*= footer ==*/
+.imgaagen{
+  height: 10%;
+  width: 50%;
+  margin: 5%;
+
+}
+.iconos{
+  padding: 2%;
+  width: 100%;
+}
+.iconoss{
+  margin-left:120px ;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100px;
+  
+}
+.maq{
+  font-size: medium;
+}
+.t-footer{
+  color: black;
+
+}
 
 
 /*====== Profile ======*/
@@ -579,6 +608,7 @@ textarea.form-input {
 
   .left-navbar li {
     margin-right: 15px;
+    
   }
 
   .right-navbar li {
@@ -586,11 +616,17 @@ textarea.form-input {
   }
 
   .main-footer {
+    width: 100%;
+
     padding: 40px 0;
+    background-color: #d6b9b9;
   }
 
   .footer-data {
     width: 95%;
     margin: auto;
+
+    background-color: rgb(247, 230, 230) ;
   }
+  
 }
