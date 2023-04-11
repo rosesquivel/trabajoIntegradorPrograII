@@ -12,7 +12,7 @@
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%=product[0].name%></h2> 
 			<p class="product-detail-description">
-				<a href="/products/add">Agregar producto</a>
+				<a href="/products/add">Editar</a>
 			</p>
 		</div>
 		<div class="product-detail">
@@ -23,7 +23,6 @@
 						<%=product[0].longDescription%>
 					</p>
 				</article>
-
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<% for(let i=0; i<5; i++){ %>
@@ -41,7 +40,7 @@
 
 					<form class="form" action="/products" method="GET">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+						<button type="submit" class="button-send">Enviar comentario</button>
 					</form>
 					<hr>
 				</div>
