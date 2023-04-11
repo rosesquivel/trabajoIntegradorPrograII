@@ -157,11 +157,13 @@ hr {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100px;
   width: 100%;
   background-color: rgb(228, 215, 215);
   border: none;
+  
+  
 }
+
 
 /*====== Products ======*/
 .products-wrapper {
@@ -172,7 +174,7 @@ hr {
 .products-title {
   font-size: 3.2em;
   font-weight: 400;
-  color: var(--gray);
+  color: rgb(135, 90, 97);
   display: flex;
   justify-content: center;
   font-family: 'Nunito';
@@ -202,6 +204,7 @@ hr {
   flex-wrap: wrap;
   justify-content: center;
   font-family: 'Nunito';
+  color: rgb(178, 147, 152);
 }
 
 .product-box_data h2 {
@@ -334,6 +337,7 @@ hr {
   line-height: 1.3;
   text-align: justify;
   font-family: 'Montserrat';
+  
 }
 
 .product-detail-price {
@@ -380,7 +384,8 @@ hr {
 }
 
 .buy-now-button {
-  background-color: #5c2927;
+  background-color: rgb(135, 90, 97);
+  /* background-color: #5c2927; */
   font-size: 1.6em;
   color: #ffffff;
   padding: 15px;
