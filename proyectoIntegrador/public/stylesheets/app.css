@@ -289,7 +289,7 @@ hr {
 }
 
 .footer-data h2 {
-  padding: 4%;
+  padding-top: 4%;
   font-size: 2.4em;
   font-weight: 400;
   color: #bd9393 ;
@@ -532,6 +532,8 @@ textarea.form-input {
 
 /*= footer ==*/
 .imgaagen{
+  padding-top: 3%;
+  padding-bottom: 1%;
   width: 50%;
  
 
@@ -552,10 +554,7 @@ textarea.form-input {
 .maq{
   font-size: medium;
 }
-.t-footer{
-  color: black;
 
-}
 
 
 /*====== Profile ======*/
