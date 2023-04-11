@@ -630,13 +630,13 @@ textarea.form-input {
   .main-footer {
     width: 100%;
     padding: 40px 0;
-    background-color: var(--dark-pink);
+    /* background-color: var(--dark-pink); */
   }
   
   .footer-data {
     width: 95%;
     margin: 4%;
-    background-color: rgb(247, 230, 230) ;
+    /* background-color: rgb(247, 230, 230) ; */
   }
   
 }
