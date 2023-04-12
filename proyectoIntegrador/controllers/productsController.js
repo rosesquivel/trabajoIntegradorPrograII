@@ -9,6 +9,9 @@ let productsController = {
     add: function(req, res){
         return res.render('product-add')
     },
+    edit: function(req, res){
+        return res.render('product-edit')
+    },
     results: function(req, res){
         return res.render('search-results', {
             product: db.products

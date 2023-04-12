@@ -12,7 +12,7 @@
   --green: #39b54a;
   --base-font-family: 'Montserrat';
   --pink: rgb(240, 228, 228);
-  --dark-pink: #d6b9b9;
+  --dark-pink: #d7bebe;
   --white: #ffffff;
 }
 
@@ -42,8 +42,10 @@ ol {
 }
 
 a, a:hover {
+  display: inline-block;
   text-decoration: none;
-  color: inherit;
+  color: rgb(94, 63, 67);
+  font-size: 1.1em;
 }
 
 figure {
@@ -68,7 +70,7 @@ hr {
 
 /*====== Main Header ======*/
 .main-header {
-  padding: 0px;
+  padding: 15px 0;
   background-color: var(--dark-pink);
 }
 
@@ -121,7 +123,7 @@ hr {
   font-size: 1.5em;
   border: none;
   border-radius: 4px;
-  padding: 5px 15px;
+  padding: 0px 15px;
   display: block;
   margin: 20px auto 0;
 }
@@ -139,8 +141,9 @@ hr {
 .logout{
   background: transparent;
   border: 0px;
-  cursor: pointer;
-  font-size: 1em;
+  color: rgb(94, 63, 67);
+  font-size: 1.1em;
+  font-family: var(--base-font-family);
 }
 
 .logout:hover{
@@ -160,7 +163,6 @@ hr {
   background-size: cover;
   background-position: center;
   width: 100%;
-  background-color: var(--pink);
   border: none;
 }
 
@@ -204,10 +206,11 @@ hr {
   justify-content: center;
   font-family: 'Nunito';
   color: rgb(178, 147, 152);
+  margin: 0;
 }
 
 .product-box_data h2 {
-  font-size: 2.4em;
+  font-size: 1.9em;
   font-weight: 300;
   margin: 0;
   text-align: center;
@@ -257,7 +260,7 @@ hr {
 }
 
 .product-box:hover p {
-  height: 36px;
+  height: 40px;
   margin-top: 15px;
 }
 
@@ -284,10 +287,9 @@ hr {
 }
 
 .footer-data h2 {
-  padding-top: 4%;
+  color: #bd9393;
   font-size: 2.4em;
   font-weight: 400;
-  color: #bd9393 ;
 }
 
 .footer-data p {
@@ -305,30 +307,6 @@ hr {
   margin: 0;
   color: var(--gray);
   padding: 15px 0;
-}
-
-.logo{
-  padding-top: 3%;
-  padding-bottom: 1%;
-  width: 50%;
-} 
-
-.conteiner-iconos{
-  margin-left:120px ;
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  height: 50px;
-  width: 100px;
-}
-
-.iconos{
-  padding: 2%;
-  width: 100%;
-}
-
-.maq{
-  font-size: medium;
 }
 
 /*====== Product Detail ======*/
@@ -361,6 +339,7 @@ hr {
   line-height: 1.3;
   text-align: justify;
   font-family: var(--base-font-family);
+  color: rgb(94, 63, 67);
 }
 
 .product-detail-price {
@@ -409,7 +388,7 @@ hr {
 .buy-now-button {
   background-color: var(--dark-pink);
   font-size: 1.6em;
-  color: black;
+  color:rgb(94, 63, 67);
   padding: 15px;
   border-radius: 8px;
   border: none;
@@ -475,6 +454,7 @@ hr {
   margin-left: 10px;
   margin-top: 6px;
   margin-bottom: 6px;
+  color: var(--gray);
 }
 
 /* agregar producto*/
@@ -547,7 +527,7 @@ textarea.form-input {
   width: 100%;
   margin-bottom: 20px;
   font-size: 1.7em;
-  color: black;
+  color: rgb(94, 63, 67);
   padding: 15px;
   border-radius: 8px;
   border: none;
@@ -580,9 +560,8 @@ textarea.form-input {
   background-color: var(--dark-pink);
   padding: 10px 20px;
   border-radius: 8px;
-  color: black;
+  color: rgb(94, 63, 67);
   font-family: 'Nunito';
-  border: none;
 }  
 
 .email{
@@ -628,15 +607,11 @@ textarea.form-input {
   }
 
   .main-footer {
-    width: 100%;
     padding: 40px 0;
-    /* background-color: var(--dark-pink); */
   }
   
   .footer-data {
     width: 95%;
-    margin: 4%;
-    /* background-color: rgb(247, 230, 230) ; */
-  }
-  
+    margin: auto;
+  } 
 }
