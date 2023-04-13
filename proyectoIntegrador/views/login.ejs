@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
-<!-- Include Head -->
-<%-include('./partials/head')%>
+	<!-- Include Head -->
+	<%-include('./partials/head')%>
 
-<body>
-<!-- Include Header -->
-<%-include('./partials/header')%>
+	<body>
+		<!-- Include Header -->
+		<%-include('./partials/header')%>
 
-	<!-- Formularaio -->
-	<main class="container">
-		<div class="container products-wrapper">
-			<div class="row">
-				<div class="col-12">
-					<h2 class="products-title">Ingresá</h2>
+		<!-- Formularaio -->
+		<main class="container">
+			<div class="container products-wrapper">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="products-title">Ingresá</h2>
+					</div>
 				</div>
+
+				<form class="form-register" action="/profile" method="GET">
+					<input class="controls" type="text" name="nombre" id="nombre" placeholder="Usuario" required>
+					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña" required>
+					<button class="button-send" type="submit">Iniciar sesión</button>
+					<h3 class="recordarme"><input class="recordarme" type="checkbox" name="recordarme" id="recordarme" placeholder="Recordarme">Recordarme</h3>
+				</form>
 			</div>
+		</main>
 
-			<form class="form-register" action="/profile" method="GET">
-				<input class="controls" type="text" name="nombre" id="nombre" placeholder="Usuario" required>
-				<input class="controls" type="password" name="password" id="password" placeholder="Contraseña" required>
-				<button class="button-send" type="submit">Iniciar sesión</button>
-				<h3 class="recordarme"><input class="recordarme" type="checkbox" name="recordarme" id="recordarme" placeholder="Recordarme">Recordarme</h3>
-			</form>
-		</div>
-	</main>
-
-<!-- Include Footer -->
-<%-include('./partials/footer')%>
-</body>
+		<!-- Include Footer -->
+		<%-include('./partials/footer')%>
+	</body>
 </html>

@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
-<!-- Include Head -->
-<%-include('./partials/head')%>
+	<!-- Include Head -->
+	<%-include('./partials/head')%>
 
-<body>
-<!-- Include Header -->
-<%-include('./partials/header')%>
+	<body>
+		<!-- Include Header -->
+		<%-include('./partials/header')%>
 
-	<!-- Formulario  -->
-	<main class="container">
-		<div class="container products-wrapper">
-			<div class="row">
-				<div class="col-12">
-					<h2 class="products-title">Regístrate</h2>
+		<!-- Formulario  -->
+		<main class="container">
+			<div class="container products-wrapper">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="products-title">Regístrate</h2>
+					</div>
 				</div>
+				
+				<form class="form-register" action="/profile" method="GET">
+					<input class="controls" type="text" name="nombre" id="mobre" placeholder="Nombre" required>
+					<input class="controls"type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+					<input class="controls" type="date" name="fechadenacimiento" id="fechadenacimiento" placeholder="Fecha de nacimiento" required>
+					<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono" required>
+					<input class="controls" type="numbers" name="number" id="documento" placeholder="Documento">
+					<input class="controls" type="email" name="mail" id="mail" placeholder="Mail" required>
+					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña" required>
+					<input class="controls" type="texto" name="images" id="images" placeholder="Inserte una imagen" required>
+					<button class="button-send" type="submit">Enviar</button>
+				</form>
 			</div>
-			
-			<form class="form-register" action="/profile" method="GET">
-				<input class="controls" type="text" name="nombre" id="mobre" placeholder="Nombre" required>
-				<input class="controls"type="text" name="apellido" id="apellido" placeholder="Apellido" required>
-				<input class="controls" type="date" name="fechadenacimiento" id="fechadenacimiento" placeholder="Fecha de nacimiento" required>
-				<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono" required>
-				<input class="controls" type="numbers" name="number" id="documento" placeholder="Documento">
-				<input class="controls" type="email" name="mail" id="mail" placeholder="Mail" required>
-				<input class="controls" type="password" name="password" id="password" placeholder="Contraseña" required>
-				<input class="controls" type="texto" name="images" id="images" placeholder="Inserte una imagen" required>
-				<button class="button-send" type="submit">Enviar</button>
-			</form>
-		</div>
-	</main>
-			
-<!-- Include Footer -->
-<%-include('./partials/footer')%>
-</body>
+		</main>
+				
+		<!-- Include Footer -->
+		<%-include('./partials/footer')%>
+	</body>
 </html>

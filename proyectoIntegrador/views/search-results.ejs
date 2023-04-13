@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
-<!-- Include Head -->
-<%-include('./partials/head')%>
+	<!-- Include Head -->
+	<%-include('./partials/head')%>
 
-<body>
-<!-- Include Header -->
-<%-include('./partials/header')%>
+	<body>
+		<!-- Include Header -->
+		<%-include('./partials/header')%>
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Resultados de búsqueda</h2>
-			</div>
-		
-			<!-- Show mis productos -->
-			<% for(let i=8; i<=11; i++){ %>
-				<div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-						<a href="/products">
-							<figure class="product-box_image">
-								<img src=<%=product[i].image%> alt="<%=product[i].name%>">
-							</figure>
-							<article class="product-box_data">
-								<h2><%=product[i].name%></h2>
-								<p><%=product[i].shortDescription%></p>
-								<p>Comentarios: 12</p>
-							</article>
-						</a>
-					</section>
+		<main>
+			<!-- Novedades -->
+			<div class="container products-wrapper">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="products-title">Resultados de búsqueda</h2>
+					</div>
+				
+					<!-- Show mis productos -->
+					<% for(let i=8; i<=11; i++){ %>
+						<div class="col-12 col-sm-6 col-lg-3">
+							<section class="product-box">
+								<a href="/products/id/<%= product[i].id %>">
+									<figure class="product-box_image">
+										<img src=<%=product[i].image%> alt="<%=product[i].name%>">
+									</figure>
+									<article class="product-box_data">
+										<h2><%=product[i].name%></h2>
+										<p><%=product[i].shortDescription%></p>
+										<p>Comentarios: 12</p>
+									</article>
+								</a>
+							</section>
+						</div>
+					<% } %>
 				</div>
-			  <% } %>
-		</div>
-	</div>
+			</div>
+		</main>
 
-<!-- Include Footer -->
-<%-include('./partials/footer')%>
-</body>
+		<!-- Include Footer -->
+		<%-include('./partials/footer')%>
+	</body>
 </html>

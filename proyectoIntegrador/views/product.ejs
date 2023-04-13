@@ -1,54 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
-<!-- Include Head -->
-<%-include('./partials/head')%>
+	<!-- Include Head -->
+	<%-include('./partials/head')%>
 
-<body>	
-<!-- Include Header -->
-<%-include('./partials/header')%>
-
-	<!-- product detail -->
-	<div class="container products-wrapper">
-		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%=product[0].name%></h2> 
-			<p class="product-detail-description">
-				<a href="/products/edit">Editar</a>
-			</p>
-		</div>
-		<div class="product-detail">
-			<div class="row">
-				<article class="col-12 col-lg-8 product-detail-info">
-					<img src=<%=product[0].image%> alt="<%=product[0].name%>" class="product-detail-img">
+	<body>	
+		<!-- Include Header -->
+		<%-include('./partials/header')%>
+		
+		<main>
+			<!-- Product detail -->
+			<div class="container products-wrapper">
+				<div class="d-flex align-items-center">
+					<h2 class="products-title"><%= product[0].name%></h2> 
 					<p class="product-detail-description">
-						<%=product[0].longDescription%>
+						<a href="/products/edit">Editar</a>
 					</p>
-				</article>
-				<div class="col-12 col-lg-4">
-					<section class="comments">
-						<% for(let i=0; i<5; i++){ %>
-							<article>
-								<img src='<%=comments[i].profilePicture%>'  alt="">
-								<div class="data">
-									<p class="user">
-									<strong> <a href="/profile"><%=comments[i].username%></a> </strong>
-									</p>
-									<p class="user"><%=comments[i].comment%></p>
-								</div>
-							</article>
-						<% } %>
-					</section>
+				</div>
+				<div class="product-detail">
+					<div class="row">
+						<article class="col-12 col-lg-8 product-detail-info">
+							<img class="product-detail-img" src=<%=product[0].image%> alt="<%=product[0].name%>" >
+							<p class="product-detail-description">
+								<%=product[0].longDescription%>
+							</p>
+						</article>
+						<div class="col-12 col-lg-4">
+							<section class="comments">
+								<% for(let i=0; i<comments.length; i++){ %>
+									<article>
+										<img src='<%=comments[i].profilePicture%>'  alt="">
+										<div class="data">
+											<p class="user">
+											<strong> <a href="/profile"><%=comments[i].username%></a> </strong>
+											</p>
+											<p class="user"><%=comments[i].comment%></p>
+										</div>
+									</article>
+								<% } %>
+							</section>
 
-					<form class="form" action="/products" method="GET">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="button-send">Enviar comentario</button>
-					</form>
-					<hr>
+							<form class="form" action="/products/id/<%= product[0].id %>" method="GET">
+								<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+								<button type="submit" class="button-send">Enviar comentario</button>
+							</form>
+							<hr>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-
-<!-- Include Footer -->
-<%-include('./partials/footer')%>
-</body>	
+		</main>
+		
+		<!-- Include Footer -->
+		<%-include('./partials/footer')%>
+	</body>	
 </html>
