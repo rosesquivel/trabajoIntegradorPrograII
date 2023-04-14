@@ -147,7 +147,7 @@ hr {
 }
 
 .logout:hover{
-  color: #1259c3;
+  cursor: pointer;
 }
 
 .left-navbar a,
