@@ -1,4 +1,6 @@
-let db = require('../db/data');
+let db = require('../database/models');
+let op = db.Sequelize.Op;
+
 let productsController = {
     product: function(req, res){
         let id = req.params.id;

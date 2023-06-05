@@ -1,4 +1,6 @@
-let db = require('../db/data');
+let db = require('../database/models');
+//let op = db.Sequelize.Op;
+
 let indexController = {
     index: function (req, res) {
         return res.render('index', {
@@ -8,3 +10,4 @@ let indexController = {
 };
 
 module.exports = indexController;
+ 

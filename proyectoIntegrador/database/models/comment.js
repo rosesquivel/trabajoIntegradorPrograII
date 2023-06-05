@@ -7,35 +7,36 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.INTEGER  
 
         },
-        email: {
-            type: dataTypes.STRING
+        idProduct: {
+            type: dataTypes.INTEGER
 
         },
-        password: {
-            type: dataTypes.STRING
-        },
-        profilePicture: {
-            type: dataTypes.STRING
-        },
-        bDate:{
-            type: dataTypes.DATE
-        },
-        dni: {
+        idUser: {
             type: dataTypes.INTEGER
         },
-        phone: {
-            type: dataTypes.INTEGER
-        }, 
+        comment: {
+            type: dataTypes.STRING
+        },
         createdAt:{
             type: dataTypes.DATE
         },
         updatedAt:{
             type: dataTypes.DATE
         }
-  
-
+    };
+    let config = {
 
     };
     let Comment = sequelize.define(alias, cols, config);
+    // User.associate = function (models) {
+    //     User.hasMany(models.User, {
+    //         as: 'User',
+    //         foreingKey: 'idUser'
+    //     }),
+    //     User.belongsTo(models.Product, {
+    //         as: 'Product',
+    //         foreingKey: 'idProduct'
+    //     })
+    // }
     return Comment;
 }

@@ -1,4 +1,6 @@
-let db = require('../db/data');
+let db = require('../database/models');
+let op = db.Sequelize.Op;
+
 let profileController = {
     profile: function(req, res){
         return res.render('profile', {

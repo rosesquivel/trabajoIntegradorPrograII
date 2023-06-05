@@ -8,6 +8,7 @@ module.exports = function (sequelize, dataTypes) {
 
         },
         userName: {
+            type: dataTypes.STRING
 
         },
         email: {
@@ -18,7 +19,7 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.STRING
         },
         profilePicture: {
-            type: dataType.STRING
+            type: dataTypes.STRING
         },
         bDate:{
             type: dataTypes.DATE
@@ -29,12 +30,26 @@ module.exports = function (sequelize, dataTypes) {
         phone: {
             type: dataTypes.INTEGER
         },
-  
-   
-        
-    
-
+        createdAt: {
+            type: dataTypes.DATE
+        },
+        updatedAt: {
+            type: dataTypes.DATE
+        }
     };
+    let config = {
+
+    }
     let User = sequelize.define(alias, cols, config);
+    // User.associate = function (models) {
+    //     User.hasMany(models.Product, {
+    //         as: 'Product',
+    //         foreingKey: 'productId'
+    //     }),
+    //     User.hasMany(models.Comment), {
+    //         as: 'Comment',
+    //         foreingKey: 'commentId'
+    //     }
+    // }
     return User;
 }
