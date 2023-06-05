@@ -1,17 +1,17 @@
 module.exports = function (sequelize, dataTypes) {
     let alias = 'Comment';
+
     let cols = {
         id: {
             autoincrement: true, 
             primaryKey: true,
             type: dataTypes.INTEGER  
-
         },
         idProduct: {
             type: dataTypes.INTEGER
 
         },
-        idUser: {
+        userId: {
             type: dataTypes.INTEGER
         },
         comment: {
@@ -24,19 +24,22 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.DATE
         }
     };
+
     let config = {
 
     };
+
     let Comment = sequelize.define(alias, cols, config);
-    // User.associate = function (models) {
-    //     User.hasMany(models.User, {
-    //         as: 'User',
-    //         foreingKey: 'idUser'
-    //     }),
-    //     User.belongsTo(models.Product, {
-    //         as: 'Product',
-    //         foreingKey: 'idProduct'
-    //     })
-    // }
+
+    Comment.associate = function (models) {
+        Comment.belongsTo(models.User, {
+             as: 'User',
+             foreingKey: 'userId'
+         }),
+        Comment.belongsTo(models.Product, {
+             as: 'Product',
+             foreingKey: 'idProduct'
+         })
+     }
     return Comment;
 }

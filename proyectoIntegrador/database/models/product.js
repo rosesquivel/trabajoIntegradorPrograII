@@ -1,5 +1,6 @@
 module.exports = function (sequelize, dataTypes) {
     let alias = 'Product';
+
     let cols = {
         id: {
             autoincrement: true, 
@@ -30,20 +31,22 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.DATE
         }
     };
+
     let config = {
         
-    }
+    };
+
     let Product = sequelize.define(alias, cols, config);
-    // Product.associate = function (models) {
-    //     Product.belongsTo(models.User, {
-    //         as: 'User',
-    //         foreingKey: 'userId'
-    //     }),
-    //     Product.hasMany(models.Comment, {
-    //         as: 'Comment',
-    //         foreingKey: 'commentId'
-    //     })
-    
-    // }
+
+    Product.associate = function (models) {
+         Product.belongsTo(models.User, {
+             as: 'User',
+             foreingKey: 'userId'
+         }),
+         Product.hasMany(models.Comment, {
+             as: 'Comments',
+             foreingKey: 'idProduct'
+         })
+    }
     return Product;
 }

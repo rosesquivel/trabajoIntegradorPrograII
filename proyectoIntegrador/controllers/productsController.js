@@ -1,9 +1,25 @@
-let db = require('../database/models');
+const { name } = require("ejs");
+let db = require("../database/models");
 let op = db.Sequelize.Op;
+let bcriptjs = require('bcryptjs');
 
 let productsController = {
     product: function(req, res){
-        let id = req.params.id;
+        db.Product.findAll({
+            include: [
+                {association: 'User'},
+                {association: 'Comments'}
+            ]
+            }
+        )
+        .then(function(ProductAll){
+            return res.send(ProductAll)
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+
+        /* let id = req.params.id;
         let list = [];
         for(let i=0; i < db.products.length; i++){
             if(id == db.products[i].id){
@@ -13,7 +29,7 @@ let productsController = {
         return res.render('product', {
             product: list,
             comments: db.comments,
-        })
+        }) */
     }, 
     add: function(req, res){
         return res.render('product-add', {

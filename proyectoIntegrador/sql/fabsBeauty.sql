@@ -54,11 +54,11 @@ INSERT INTO products VALUES
 CREATE TABLE comments(
 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 idProduct INT UNSIGNED,
-idUser INT UNSIGNED,
+userId INT UNSIGNED,
 comment VARCHAR(500) NOT NULL,
 
 FOREIGN KEY (idProduct) REFERENCES products(id),
-FOREIGN KEY (idUser) REFERENCES users(id),
+FOREIGN KEY (userId) REFERENCES users(id),
 
 createdAt TIMESTAMP NOT NULL DEFAULT current_timestamp(),
 updatedAt TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -105,12 +105,3 @@ INSERT INTO comments VALUES
 (DEFAULT, 10, 3, 'Me gusta su larga duración', DEFAULT, DEFAULT),
 (DEFAULT, 10, 4, 'Si bien es matte, no seca mis labios. Aplausos!', DEFAULT, DEFAULT),
 (DEFAULT, 10, 5, 'Me encantó!', DEFAULT, DEFAULT);
-
-
-
-
-
-
-
-
-
