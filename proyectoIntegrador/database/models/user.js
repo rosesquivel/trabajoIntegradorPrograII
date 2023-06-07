@@ -34,13 +34,12 @@ module.exports = function (sequelize, dataTypes) {
         createdAt: {
             type: dataTypes.DATE
         },
-        uptadetAt: {
+        updatedAt: {
             type: dataTypes.DATE
         }
     };
 
     let config = {
-        updatedAt: "uptadetAt"
     };
     
     let User = sequelize.define(alias, cols, config);
@@ -48,7 +47,7 @@ module.exports = function (sequelize, dataTypes) {
     User.associate = function (models) {
          User.hasMany(models.Product, {
              as: 'products',
-             foreingKey: 'idProduct'
+             foreingKey: 'userId'
          }),
          User.hasMany(models.Comment), {
              as: 'comments',

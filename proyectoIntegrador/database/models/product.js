@@ -10,7 +10,6 @@ module.exports = function (sequelize, dataTypes) {
         },
         name: {
             type: dataTypes.STRING
-
         },
         longDescription: {
             type: dataTypes.STRING

@@ -6,17 +6,16 @@ let bcriptjs = require('bcryptjs');
 let productsController = {
     product: function(req, res){
         let rel = {
-            include: {
-              all:true,
-              nested: true
-            }};
+            include: [
+            {association: 'user'}
+        ]
+        }
+            
         let id = req.params.id;
-       
         db.Product.findByPk(id, rel)
         .then(function(oneProduct){
-             return res.render('product', {
-                 product: oneProduct
-            })
+             return res.send(oneProduct
+            )
         })
         .catch(function(error){
             console.log(error);
