@@ -8,7 +8,7 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.INTEGER  
 
         },
-        userName: {
+        username: {
             type: dataTypes.STRING
 
         },
@@ -34,24 +34,24 @@ module.exports = function (sequelize, dataTypes) {
         createdAt: {
             type: dataTypes.DATE
         },
-        updatedAt: {
+        uptadetAt: {
             type: dataTypes.DATE
         }
     };
 
     let config = {
-
+        updatedAt: "uptadetAt"
     };
     
     let User = sequelize.define(alias, cols, config);
 
     User.associate = function (models) {
          User.hasMany(models.Product, {
-             as: 'Products',
-             foreingKey: 'productId'
+             as: 'products',
+             foreingKey: 'idProduct'
          }),
          User.hasMany(models.Comment), {
-             as: 'Comments',
+             as: 'comments',
              foreingKey: 'userId'
          }
     }

@@ -26,18 +26,17 @@ module.exports = function (sequelize, dataTypes) {
     };
 
     let config = {
-
     };
 
     let Comment = sequelize.define(alias, cols, config);
 
     Comment.associate = function (models) {
         Comment.belongsTo(models.User, {
-             as: 'User',
+             as: 'user',
              foreingKey: 'userId'
          }),
         Comment.belongsTo(models.Product, {
-             as: 'Product',
+             as: 'product',
              foreingKey: 'idProduct'
          })
      }

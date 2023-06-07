@@ -13,7 +13,7 @@ dni INT UNSIGNED NOT NULL,
 phone VARCHAR(200) DEFAULT NULL,
 
 createdAt TIMESTAMP NOT NULL DEFAULT current_timestamp(),
-uptadetAt TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+updatedAt TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 );
 
 INSERT INTO users VALUES
@@ -30,6 +30,7 @@ name VARCHAR(300) NOT NULL,
 longDescription VARCHAR(500) NOT NULL,
 shortDescription VARCHAR(200) NOT NULL,
 image VARCHAR(500) NULL,
+
 userId INT UNSIGNED,
 
 FOREIGN KEY (userId) REFERENCES users(id),
@@ -53,9 +54,10 @@ INSERT INTO products VALUES
 -- Table comments
 CREATE TABLE comments(
 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+comment VARCHAR(500) NOT NULL,
+
 idProduct INT UNSIGNED,
 userId INT UNSIGNED,
-comment VARCHAR(500) NOT NULL,
 
 FOREIGN KEY (idProduct) REFERENCES products(id),
 FOREIGN KEY (userId) REFERENCES users(id),

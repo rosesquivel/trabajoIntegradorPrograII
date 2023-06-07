@@ -5,15 +5,15 @@ let bcriptjs = require('bcryptjs');
 
 let profileController = {
     profile: function(req, res){
-        return res.render('profile', {
-            product: db.products,
-            users: db.users
-        })
+        // return res.render('profile', {
+        //     product: db.products,
+        //     users: db.users
+        // })
     },
     edit: function(req, res){
-        return res.render('profile-edit', {
-            users: db.users
-        })
+        // return res.render('profile-edit', {
+        //     users: db.users
+        // })
     },
     register: function(req, res){
         return res.render('register')
@@ -24,7 +24,7 @@ let profileController = {
         //Encriptar la contraseña antes de guardar en la base de datos.
         let user = {
             email:form.email,
-            userName: form.userName,
+            username: form.username,
             password: bcriptjs.hashSync(form.password, 10),
         }
 

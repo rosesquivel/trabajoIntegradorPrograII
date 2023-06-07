@@ -1,19 +1,22 @@
-const { name } = require("ejs");
-let db = require("../database/models");
+// const { name } = require("ejs");
+let db = require('../database/models');
 let op = db.Sequelize.Op;
 let bcriptjs = require('bcryptjs');
 
 let productsController = {
     product: function(req, res){
-        db.Product.findAll({
-            include: [
-                {association: 'User'},
-                {association: 'Comments'}
-            ]
-            }
-        )
-        .then(function(ProductAll){
-            return res.send(ProductAll)
+        let rel = {
+            include: {
+              all:true,
+              nested: true
+            }};
+        let id = req.params.id;
+       
+        db.Product.findByPk(id, rel)
+        .then(function(oneProduct){
+             return res.render('product', {
+                 product: oneProduct
+            })
         })
         .catch(function(error){
             console.log(error);
