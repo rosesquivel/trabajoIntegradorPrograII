@@ -15,9 +15,9 @@ let indexController = {
     index: function(req, res){
         let rel = {
             include: {
-              all:true,
               nested: true
             }}
+            
         db.Product.findAll({
             order: [
                 ['createdAt', 'DESC'], //para que sea real deberíamos usar id

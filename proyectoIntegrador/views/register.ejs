@@ -16,14 +16,14 @@
 					</div>
 				</div>
 				
-				<form class="form-register" action="/register" method="POST"> //en action antes decía "/profile"
-					<input class="controls" type="text" name="username" id="username" placeholder="Nombre de usuario" required>
-					<input class="controls" type="email" name="email" id="email" placeholder="Email" required>
-					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña" required>
-					<input class="controls" type="date" name="bDate" id="bDate" placeholder="Fecha de nacimiento" required>
-					<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono" required>
+				<form class="form-register" action="/profile/register" method="POST"> 
+					<input class="controls" type="text" name="username" id="username" placeholder="Nombre de usuario">
+					<input class="controls" type="email" name="email" id="email" placeholder="Email">
+					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña">
+					<input class="controls" type="date" name="bDate" id="bDate" placeholder="Fecha de nacimiento">
+					<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono">
 					<input class="controls" type="numbers" name="dni" id="dni" placeholder="DNI">
-					<input class="controls" type="texto" name="profilePicture" id="profilePicture" placeholder="Imagen de perfil" required>
+					<input class="controls" type="texto" name="profilePicture" id="profilePicture" placeholder="Imagen de perfil">
 					<button class="button-send" type="submit">Registrarme</button>
 				</form>
 			</div>

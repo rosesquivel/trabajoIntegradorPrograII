@@ -1,4 +1,4 @@
-// const { name } = require("ejs");
+const { name } = require("ejs");
 let db = require('../database/models');
 let op = db.Sequelize.Op;
 let bcriptjs = require('bcryptjs');
@@ -6,16 +6,14 @@ let bcriptjs = require('bcryptjs');
 let productsController = {
     product: function(req, res){
         let rel = {
-            include: [
-            {association: 'user'}
-        ]
-        }
+            include: {
+              nested: true
+            }}
             
         let id = req.params.id;
         db.Product.findByPk(id, rel)
         .then(function(oneProduct){
-             return res.send(oneProduct
-            )
+             return res.render('product', {product: oneProduct})
         })
         .catch(function(error){
             console.log(error);
