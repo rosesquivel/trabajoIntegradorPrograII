@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//Requiero session ANTES DE LAS RUTAS
+var session = require('express-session');
+
+//Requiero rutas
 var indexRouter = require('./routes/index');
 let productsRouter = require('./routes/products');
 let profileRouter = require('./routes/profile');
@@ -20,6 +24,25 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Uso session 
+app.use(session({
+  secret:   'fabsBeauty',
+  resave: false,
+  saveUninitialized: true
+}))
+
+
+//Paso datos de session a las vistas (creo Middleware de la App)
+app.use(function(req, res, next){ 
+  if (req.session.user != undefined){
+    res.locals.user = req.session.user
+    return next();
+  }
+    return next(); //seguí procesando app js, independientemente de que se ejecute o no el if, 
+})
+
+
+//Uso rutas
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
 app.use('/profile', profileRouter);

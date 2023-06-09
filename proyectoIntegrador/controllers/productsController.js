@@ -6,30 +6,20 @@ let bcriptjs = require('bcryptjs');
 let productsController = {
     product: function(req, res){
         let rel = {
-            include: {
-              nested: true
-            }}
-            
+            include: [
+                { association: "user"},
+                { association: "comments"}
+                ]
+            };            
         let id = req.params.id;
         db.Product.findByPk(id, rel)
         .then(function(oneProduct){
-             return res.render('product', {product: oneProduct})
+            return res.send(oneProduct)
+            //return res.render('product', {product: oneProduct})
         })
         .catch(function(error){
             console.log(error);
         })
-
-        /* let id = req.params.id;
-        let list = [];
-        for(let i=0; i < db.products.length; i++){
-            if(id == db.products[i].id){
-                list.push(db.products[i])
-            }
-        }
-        return res.render('product', {
-            product: list,
-            comments: db.comments,
-        }) */
     }, 
     add: function(req, res){
         return res.render('product-add', {

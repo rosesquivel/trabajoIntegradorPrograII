@@ -25,14 +25,14 @@ let profileController = {
         let user = {
             username: form.username,
             email:form.email,
-            password: bcriptjs.hashSync(form.password, 10),
+            password: bcriptjs.hashSync(form.password, 10), //encripto la contraseña
             profilePicture: form.profilePicture,
             bDate: form.bDate,
             dni: form.dni,
             phone: form.phone,
         }
 
-        //Usar un método de Sequelize para guardar datos.
+        //Guardo mis datos con el método Create
         db.User.create(user)
             .then(function(newUser){
                     return res.redirect('/profile/login');
@@ -41,20 +41,21 @@ let profileController = {
                 console.log(error);
             })
 
-        let errors = {}
+        //let errors = {}
 
     },
     login: function(req,res){
-        return res.render('login')
-        /* if(req.session.user != undefined){
+        //Si el usuario está logueado, ir al inicio, de lo contrario, mostrar el form de login
+        if(req.session.user != undefined){
             return res.redirect('/')
         } else {
             return res.render('login');
-        } */
+        } 
     },
-    processLogin: function(req, res){
+    processLogin: function(req, res){ //Busco los datos del usuario en la db, y los pongo en sesión
+        let form = req.body;
         db.User.findOne({
-            where: [{email: req.body.email}]
+            where: [{email: form.email}]
         })
            .then(function(oldUser){
             let errors = {}

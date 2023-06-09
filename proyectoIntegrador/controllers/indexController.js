@@ -14,19 +14,20 @@ let bcriptjs = require('bcryptjs');
 let indexController = {
     index: function(req, res){
         let rel = {
-            include: {
-              nested: true
-            }}
-            
-        db.Product.findAll({
-            order: [
-                ['createdAt', 'DESC'], //para que sea real deberíamos usar id
-            ]
-        })
-    .then( function(productsAll){
+                order: [
+                    ['createdAt', 'DESC'], 
+                ]
+            ,
+            include: [
+                { association: "user"},
+                { association: "comments"}
+                ]
+            }
+        db.Product.findAll(rel)
+    .then(function(productsAll){
         return res.render('index', {
             product: productsAll
-        });   
+        });  
         })
         .catch( function(error){
             console.log(error);

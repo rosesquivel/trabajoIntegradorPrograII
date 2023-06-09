@@ -20,7 +20,7 @@
 						<h2 class="products-title">Novedades</h2>
 					</div>
 					<!-- Show the "ultimos" products -->
-					<% for(let i=0; i<4; i++){ %>
+					<% for(let i=0; i<8; i++){ %>
 						<div class="col-12 col-sm-6 col-lg-3">
 							<section class="product-box">
 								<a href="/products/id/<%= product[i].id %>">
@@ -29,34 +29,10 @@
 									</figure>
 									<article class="product-box_data">
 										<h2><%=product[i].name%></h2>
+										<img src="<%=product[i].user.profilePicture%>" alt="">
+										<p><%=product[i].user.username%></p>
 										<p><%=product[i].shortDescription%></p>
-										<p>Comentarios: 5</p>
-									</article>
-								</a>
-							</section>
-						</div>
-					<% } %>
-				</div>
-			</div>
-
-			<!-- Más comentados -->
-			<div class="container products-wrapper">
-				<div class="row">
-					<div class="col-12">
-						<h2 class="products-title">Más comentados</h2>
-					</div>
-					<!-- Show the "mas comentados" products -->
-					<% for(let i=4; i<8; i++){ %>
-						<div class="col-12 col-sm-6 col-lg-3">
-							<section class="product-box">
-								<a href="/products/id/<%= product[i].id %>">
-									<figure class="product-box_image">
-										<img src=<%=product[i].image%> alt="<%=product[i].name%>">
-									</figure>
-									<article class="product-box_data">
-										<h2><%=product[i].name%></h2>
-										<p><%=product[i].shortDescription%></p>
-										<p>Comentarios: 5</p>
+										<p>Comentarios: <%=product[i].comments.length%></p>
 									</article>
 								</a>
 							</section>
