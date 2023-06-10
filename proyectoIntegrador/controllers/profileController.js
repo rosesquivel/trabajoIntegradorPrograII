@@ -39,7 +39,7 @@ let profileController = {
         //Guardo mis datos con el método Create
         db.User.create(user)
             .then(function(newUser){
-                    return res.redirect('/profile/login');
+                return res.redirect('/profile/login');
             })
             .catch(function(error){
                 console.log(error);
@@ -56,50 +56,48 @@ let profileController = {
         };
     },
     processLogin: function(req, res){ 
+        /* RECOPILO DATOS DEL FORM DEL LOGIN */
         let form = req.body;
 
-        //Busco los datos en la database
+        /* VALIDAR CAMPOS DEL FORM */  
+        let errors = {}; //OL de errores
+
         db.User.findOne({
             where: [{email: form.email}]
         })
-
-        .then(function(oldUser){
-            let errors = {}
-        
-            if (oldUser == null){
-                //Validar el email antes de loguear
-                errors.message = "El email ingresado no existe"
+        .then(function(userFound){        
+            if (userFound == null){ //USER NO EXISTE EN LA DB
+                errors.message = "El email ingresado no existe";
                 res.locals.errors = errors;
                 return res.render('login');
             } else {
-                //Validar la contraseña antes de loguear
-                let compare = bcriptjs.compareSync(form.password, oldUser.password)
-                
-                if(compare){
-                    //Ponerlos en session.
+                //PASSWORD NO COINCIDE CON LA DB
+                let compare = bcriptjs.compareSync(form.password, userFound.password) 
+                if(compare == true){
+                    //Pongo al user en session
                     req.session.user = {
-                        email: oldUser.email,
-                        username: oldUser.username,
+                        email: form.email,
+                        username: form.username,
                     }
                     //Preguntar si el usuario tildó el checkbox para recordarlo
                     if(form.recordarme != undefined){
-                        res.cookie('userId', 'result.dataValues', {maxAge: 1000 * 60 * 100})
-                    }
-                    //Y si el usuario quiere, agregar la cookie para que lo recuerde.
-                    return res.redirect('/');
+                        res.cookie('recordarme', 'req.session.user', {maxAge: 1000 * 60 * 100})
+                    } return res.redirect('/');
                 } else {
-                    errors.message = "La contraseña ingresada es incorrecta.";
+                    errors.message = "La contraseña ingresada es incorrecta";
                     res.locals.errors = errors;
                     return res.render('login');
                 };
         }})
         .catch(function(error){
             console.log(error);
-        })
-    }
+        }) 
+    },
 
-    /* logout: */
-
+    logout: function(req, res){
+        req.session.destroy(); //destruyo la session
+        return res.redirect('/'); 
+    } 
 };
 
 module.exports = profileController;

@@ -5,11 +5,12 @@
 
 	<body>
 		<!-- Include Header -->
-		<% if (user != null) { %>
-			<%-include('./partials/headerLogueado')
+		<% if (locals.user != undefined) { %>
+			<%-include('./partials/headerLogueado')%> 
 		<% } else { %>
-			<%-include('./partials/header')
-		<% } %>
+			<%-include('./partials/header')%>
+		<%}%>
+		
 		
 		<main>
 			<!-- Banner -->

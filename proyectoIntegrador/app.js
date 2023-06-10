@@ -7,7 +7,7 @@ const session = require('express-session');
 const db = require('./database/models');
 const user = db.user;
 
-//Requiero rutas
+/* Requiero rutas */
 var indexRouter = require('./routes/index');
 let productsRouter = require('./routes/products');
 let profileRouter = require('./routes/profile');
@@ -24,14 +24,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Uso session antes de las rutas
+/* Uso session antes de las rutas */
 app.use(session({
   secret: 'fabsBeauty',
   resave: false,
   saveUninitialized: true
 }));
 
-//Paso datos de session a las vistas (creo Middleware de la App)
+/* Pongo los datos de session para que sea accesible en todas las vistas (creo el Middleware de la App) */
 app.use(function(req, res, next){ 
   if (req.session.user != undefined){
     res.locals.user = req.session.user
@@ -40,8 +40,8 @@ app.use(function(req, res, next){
   next(); //seguí procesando app js, independientemente de que se ejecute o no el if
 });
 
-//Configuro las cookies
-app.use(function(req, res, next){
+//Configuro las cookies    VERRRRRRRRRR
+/* app.use(function(req, res, next){
   //Si la cookie existe en el nav del usuario y no existe en un usuario en session
   if(req.cookies.userId != undefined && req.session.user == undefined){
     let idUserCookie = req.cookies.userId; //lo definimos
@@ -57,7 +57,7 @@ app.use(function(req, res, next){
   } else{
     return next();
   }
-});
+}); */
 
 //Uso rutas
 app.use('/', indexRouter);
