@@ -3,9 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-//Requiero session ANTES DE LAS RUTAS
-var session = require('express-session');
+const session = require('express-session');
+const db = require('./database/models');
+const user = db.user;
 
 //Requiero rutas
 var indexRouter = require('./routes/index');
@@ -24,13 +24,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Uso session 
+//Uso session antes de las rutas
 app.use(session({
-  secret:   'fabsBeauty',
+  secret: 'fabsBeauty',
   resave: false,
   saveUninitialized: true
-}))
-
+}));
 
 //Paso datos de session a las vistas (creo Middleware de la App)
 app.use(function(req, res, next){ 
@@ -38,9 +37,27 @@ app.use(function(req, res, next){
     res.locals.user = req.session.user
     return next();
   }
-    return next(); //seguí procesando app js, independientemente de que se ejecute o no el if, 
-})
+  next(); //seguí procesando app js, independientemente de que se ejecute o no el if
+});
 
+//Configuro las cookies
+app.use(function(req, res, next){
+  //Si la cookie existe en el nav del usuario y no existe en un usuario en session
+  if(req.cookies.userId != undefined && req.session.user == undefined){
+    let idUserCookie = req.cookies.userId; //lo definimos
+    user.findByPk(idUserCookie)
+    .then(function(user){
+      req.session.user = user.dataValues; //carga el usuario en session (back end)
+      res.locals.user = user.dataValues; // carga el usuario en locals (front end)
+      return next();
+    }).catch(function(error){
+      console.log(error);
+      return next();
+    });
+  } else{
+    return next();
+  }
+});
 
 //Uso rutas
 app.use('/', indexRouter);

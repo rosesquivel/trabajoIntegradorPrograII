@@ -5,7 +5,11 @@
 
 	<body>	
 		<!-- Include Header -->
-		<%-include('./partials/header')%>
+		<% if (user != null) { %>
+			<%-include('./partials/headerLogueado')
+		<% } else { %>
+			<%-include('./partials/header')
+		<% } %>
 		
 		<main>
 			<!-- Product detail -->

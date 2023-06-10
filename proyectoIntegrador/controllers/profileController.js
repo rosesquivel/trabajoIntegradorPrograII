@@ -16,7 +16,11 @@ let profileController = {
         // })
     },
     register: function(req, res){
-        return res.render('register')
+        if (req.session.user != undefined){
+            return res.redirect('/');
+        } else {
+            return res.render('register');
+        };
     },
     store: function(req,res){
         let form = req.body;
@@ -42,24 +46,26 @@ let profileController = {
             })
 
         //let errors = {}
-
     },
     login: function(req,res){
         //Si el usuario está logueado, ir al inicio, de lo contrario, mostrar el form de login
-        if(req.session.user != undefined){
-            return res.redirect('/')
+        if (req.session.user != undefined){
+            return res.redirect('/');
         } else {
             return res.render('login');
-        } 
+        };
     },
-    processLogin: function(req, res){ //Busco los datos del usuario en la db, y los pongo en sesión
+    processLogin: function(req, res){ 
         let form = req.body;
+
+        //Busco los datos en la database
         db.User.findOne({
             where: [{email: form.email}]
         })
-           .then(function(oldUser){
+
+        .then(function(oldUser){
             let errors = {}
-            
+        
             if (oldUser == null){
                 //Validar el email antes de loguear
                 errors.message = "El email ingresado no existe"
@@ -67,7 +73,7 @@ let profileController = {
                 return res.render('login');
             } else {
                 //Validar la contraseña antes de loguear
-                let compare = bcriptjs.compareSync(req.body.password, oldUser.password)
+                let compare = bcriptjs.compareSync(form.password, oldUser.password)
                 
                 if(compare){
                     //Ponerlos en session.
@@ -76,23 +82,20 @@ let profileController = {
                         username: oldUser.username,
                     }
                     //Preguntar si el usuario tildó el checkbox para recordarlo
-                    if(req.body.recordarme != undefined){
-                        res.cookie('cookieEspecial', 'el dato que quiero guardar', {maxAge: 1000*60*123123123})
+                    if(form.recordarme != undefined){
+                        res.cookie('userId', 'result.dataValues', {maxAge: 1000 * 60 * 100})
                     }
                     //Y si el usuario quiere, agregar la cookie para que lo recuerde.
                     return res.redirect('/');
-                    } else {
+                } else {
                     errors.message = "La contraseña ingresada es incorrecta.";
                     res.locals.errors = errors;
                     return res.render('login');
-                }
-            }           
-
-           })
-           .catch(function(e){
-            console.log(e);
-           }) 
-    
+                };
+        }})
+        .catch(function(error){
+            console.log(error);
+        })
     }
 
     /* logout: */
