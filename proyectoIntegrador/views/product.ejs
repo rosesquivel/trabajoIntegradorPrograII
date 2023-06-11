@@ -5,11 +5,12 @@
 
 	<body>	
 		<!-- Include Header -->
-		<% if (user != null) { %>
-			<%-include('./partials/headerLogueado')
+		<% if (locals.user != undefined) { %>
+			<%-include('./partials/headerLogueado')%> 
 		<% } else { %>
-			<%-include('./partials/header')
-		<% } %>
+			<%-include('./partials/header')%>
+		<%}%>
+		
 		
 		<main>
 			<!-- Product detail -->
@@ -30,15 +31,16 @@
 						</article>
 						<div class="col-12 col-lg-4">
 							<section class="comments">
-								<% for(let i=0; i<product.comment.length; i++){ %>
+								<% for(let i=0; i<comments.length; i++){ %>
+									<%let userId
 									<article>
-										<img src='<%=product.comment[i].user.profilePicture%>'  alt="">
+										<img src='<%=comments[i].user.profilePicture%>'  alt="">
 										<div class="data">
 											<p class="user">
-											<strong> <a href="/profile"><%=product.comment[i].user.username
+											<strong> <a href="/profile"><%=comments[i].user.username
 												%></a> </strong>
 											</p>
-											<p class="user"><%=product.comment[i].comment%></p>
+											<p class="user"><%=comments[i].comment%></p>
 										</div>
 									</article>
 								<% } %>

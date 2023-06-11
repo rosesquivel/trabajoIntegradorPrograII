@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 const db = require('./database/models');
-const user = db.user;
+
 
 /* Requiero rutas */
 var indexRouter = require('./routes/index');
@@ -39,6 +39,8 @@ app.use(function(req, res, next){
   }
   next(); //seguí procesando app js, independientemente de que se ejecute o no el if
 });
+
+
 
 //Configuro las cookies    VERRRRRRRRRR
 /* app.use(function(req, res, next){

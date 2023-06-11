@@ -5,7 +5,11 @@
 
 	<body>
 		<!-- Include Header -->
-		<%-include('./partials/header')%>
+		<% if (locals.user != undefined) { %>
+			<%-include('./partials/headerLogueado')%> 
+		<% } else { %>
+			<%-include('./partials/header')%>
+		<%}%>
 
 		<!-- Formularaio -->
 		<main class="container">
