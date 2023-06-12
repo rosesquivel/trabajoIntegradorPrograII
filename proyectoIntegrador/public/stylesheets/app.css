@@ -318,6 +318,7 @@ hr {
 
 .product-detail-img {
   width: 78%;
+  height: 50%;
   display: block;
   margin: auto;
 }

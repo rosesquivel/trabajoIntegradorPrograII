@@ -8,7 +8,12 @@ let productsController = {
         let rel = {
             include: [
                 { association: "user"},
-                { association: "comments"}
+                { association: "comments",
+                    include: [
+                        { association: "user"},
+                        { association: "product"}
+                    ]
+                }
                 ]
             };  
 
@@ -17,9 +22,8 @@ let productsController = {
         //Encuentra el producto con la pk
         db.Product.findByPk(id, rel)
         .then(function(oneProduct){
-            /* return res.send(oneProduct) */
-           return res.render('product', {
-            product: oneProduct
+            return res.render('product', {
+                product: oneProduct
            });
         })
         .catch(function(error){
@@ -27,14 +31,13 @@ let productsController = {
         });
     }, 
     storeComment: function(req, res){
-        if (req.session.user != undefined){
-            id = req.session.user.id
-        }
-        //ver
+        let form = req.body; 
+
+        //Recopilo los datos del form
         let comment = {
-            comment: req.body.comment,
+            comment: form.comment,
             idProduct: req.params.id,
-            userId: id
+            userId: req.session.user.id
         }
         let viewComments = {
             order: [
@@ -64,13 +67,14 @@ let productsController = {
             name: form.name,
             longDescription: form.longDescription,
             shortDescription: form.shortDescription,
-            image: form.image
+            image: form.image,
+            userId: req.session.user.id
         };
 
         //Guardo los datos con el método Create
         db.Product.create(product)
         .then(function(newProduct){
-            return res.redirect('/products/detail')
+            return res.redirect('/')
         })
         .catch( function(error){
             console.log(error);

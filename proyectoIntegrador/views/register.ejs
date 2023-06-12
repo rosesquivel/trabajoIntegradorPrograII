@@ -20,7 +20,7 @@
 					</div>
 				</div>
 				
-				<form class="form-register" action="/profile/register" method="POST"> 
+				<form class="form-register" action="/login" method="POST"> 
 					<input class="controls" type="text" name="username" id="username" placeholder="Nombre de usuario">
 					<input class="controls" type="email" name="email" id="email" placeholder="Email">
 					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña">
@@ -31,6 +31,13 @@
 					<button class="button-send" type="submit">Registrarme</button>
 				</form>
 			</div>
+
+			<% if(locals.errors){ %>
+				<p><%= errors.message %></p>
+			<% } %>
+
+			<h3>¿Ya tienes una cuenta? <a href="/profile/login">Ingresá</a></h3> 
+
 		</main>
 				
 		<!-- Include Footer -->

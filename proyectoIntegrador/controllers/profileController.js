@@ -22,10 +22,9 @@ let profileController = {
             return res.render('register');
         };
     },
-    store: function(req,res){
+    store: function(req, res){ 
+        /* RECOPILO DATOS DEL FORM DEL LOGIN */
         let form = req.body;
-
-        //Recopilo los datos del form
         let user = {
             username: form.username,
             email:form.email,
@@ -36,16 +35,45 @@ let profileController = {
             phone: form.phone,
         };
 
-        //Guardo mis datos con el método Create
-        db.User.create(user)
-        .then(function(newUser){
-            return res.redirect('/profile/login');
-        })
-        .catch(function(error){
-            console.log(error);
-        })
+        let errors = {};
 
-        //let errors = {}
+        if(user.email == ''){
+            errors.message = 'Debes ingresar un email'
+            res.locals.errors = errors;
+            return res.render('login');
+        } else if (user.password == ''){
+            errors.message = 'Debes ingresar una contraseña'
+            res.locals.errors = errors;
+            return res.render('login');
+        } else if (user.password.length < 3){
+            errors.message = 'La contraseña debe contener más de 3 dígitos'
+            res.locals.errors = errors;
+            return res.render('login');
+        } else{
+            db.User.findOne({
+                where: [{email: form.email}]
+            })
+
+            .then(function(userFound){  
+                      
+                if (userFound != undefined){ //compara el email ingresado con los de la base de datos
+                    errors.message = "El email ingresado ya existe";
+                    res.locals.errors = errors;
+                    return res.redirect('/profile/register');
+                } else { // si está todo ok
+                    //Guardo los datos con el método Create
+                    db.User.create(user)
+                    .then(function(newUser){
+                        return res.redirect('profile/login');
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+            }})
+            .catch(function(error){
+                console.log(error);
+            });
+        }  
     },
     login: function(req,res){
         //Si el usuario está logueado, ir al inicio, de lo contrario, mostrar el form de login
@@ -58,45 +86,58 @@ let profileController = {
     processLogin: function(req, res){ 
         /* RECOPILO DATOS DEL FORM DEL LOGIN */
         let form = req.body;
+        email = form.email;
+        password = form.password;
 
-        db.User.findOne({
-            where: [{email: form.email}]
-        })
+        let errors = {};
 
-        .then(function(userFound){        
-            let errors = {}; //OL de errores
+        if(email == ''){
+            errors.message = 'Debes ingresar un email'
+            res.locals.errors = errors;
+            return res.render('login');
+        } else if (password == ''){
+            errors.message = 'Debes ingresar una contraseña'
+            res.locals.errors = errors;
+            return res.render('login');
+        } else{
+            db.User.findOne({
+                where: [{email: form.email}]
+            })
 
-            if (userFound == undefined){ //USER NO EXISTE EN LA DB
-                errors.message = "El email ingresado no existe";
-                res.locals.errors = errors;
-                return res.render('login');
-            } else {
-                //PASSWORD NO COINCIDE CON LA DB
-                let compare = bcriptjs.compareSync(form.password, userFound.password) 
-                if(compare == true){
-                    //Pongo al user en session
-                    req.session.user = {
-                        email: form.email,
-                        username: form.username,
-                    }
-                    //Preguntar si el usuario tildó el checkbox para recordarlo
-                    if(form.recordarme != undefined){
-                        res.cookie('recordarme', 'req.session.user', {maxAge: 1000 * 60 * 100})
-                    } 
-                    return res.redirect('/');
-                } else {
-                    errors.message = "La contraseña ingresada es incorrecta";
+            .then(function(userFound){        
+                if (userFound != undefined){ //si el usuario esta ok, que evalue la contraseña
+                    let compare = bcriptjs.compareSync(form.password, userFound.password);
+                    if(compare){
+                        //Pongo al user en session
+                        req.session.user = userFound.dataValues;
+                        //Preguntar si el usuario tildó el checkbox para recordarlo
+                        if(form.recordarme != undefined){
+                            res.cookie('userId', userFound.dataValues.id , {maxAge: 1000 * 60 * 100})
+                        } 
+                        return res.redirect('/');
+                        } else {
+                            errors.message = "Tu contraseña es incorrecta. Compruébala.";
+                            res.locals.errors = errors;
+                            return res.render('login');
+                    };
+                } else { //si el usuario está mal, que le avise
+                    errors.message = "El email ingresado no existe";
                     res.locals.errors = errors;
                     return res.render('login');
-                };
-        }})
-        .catch(function(error){
-            console.log(error);
-        }) 
+            }})
+            .catch(function(error){
+                console.log(error);
+            });
+        }  
     },
     logout: function(req, res){
-        req.session.destroy(); //destruyo la session
-        return res.redirect('/'); 
+        req.session.destroy();//destruyo la session
+        if(req.cookies.userId != undefined){
+            res.clearCookie('userId');
+            return res.redirect('/');
+        } else {
+            return res.redirect('/'); 
+        }
     } 
 };
 

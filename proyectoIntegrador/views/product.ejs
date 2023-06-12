@@ -33,10 +33,10 @@
 							<section class="comments">
 								<% for(let i=0; i<product.comments.length; i++){ %>
 									<article>
-										<img src='<%=product.comments[i].profilePicture%>'  alt="">
+										<img src='<%=product.comments[i].user.profilePicture%>'  alt="">
 										<div class="data">
 											<p class="user">
-											<strong> <a href="/profile"><%=product.comments[i].username
+											<strong> <a href="/profile"><%=product.comments[i].user.username
 												%></a> </strong>
 											</p>
 											<p class="user"><%=product.comments[i].comment%></p>
@@ -51,7 +51,7 @@
 										<button type="submit" class="button-send">Enviar comentario</button>
 									</form>
 								<% } else{ %>
-									<form class="form" action="/profile/login" method="get">
+									<form class="form" action="/profile/login" method="POST">
 										<input class="form-input" type="text" value="" placeholder="Agregar comentario">
 										<button type="submit" class="button-send">Es necesario iniciar sesión para comentar</button>
 									</form>	
