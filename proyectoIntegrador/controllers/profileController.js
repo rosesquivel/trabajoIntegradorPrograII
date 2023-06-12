@@ -73,12 +73,12 @@ let profileController = {
                 if (userFound != undefined){ //compara el email ingresado con los de la base de datos
                     errors.message = "El email ingresado ya existe";
                     res.locals.errors = errors;
-                    return res.redirect('/profile/register');
+                    return res.redirect('/register');
                 } else { // si está todo ok
                     //Guardo los datos con el método Create
                     db.User.create(user)
                     .then(function(newUser){
-                        return res.redirect('profile/login');
+                        return res.redirect('/login');
                     })
                     .catch(function(error){
                         console.log(error);
