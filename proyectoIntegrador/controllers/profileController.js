@@ -34,16 +34,16 @@ let profileController = {
             bDate: form.bDate,
             dni: form.dni,
             phone: form.phone,
-        }
+        };
 
         //Guardo mis datos con el método Create
         db.User.create(user)
-            .then(function(newUser){
-                return res.redirect('/profile/login');
-            })
-            .catch(function(error){
-                console.log(error);
-            })
+        .then(function(newUser){
+            return res.redirect('/profile/login');
+        })
+        .catch(function(error){
+            console.log(error);
+        })
 
         //let errors = {}
     },
@@ -59,14 +59,14 @@ let profileController = {
         /* RECOPILO DATOS DEL FORM DEL LOGIN */
         let form = req.body;
 
-        /* VALIDAR CAMPOS DEL FORM */  
-        let errors = {}; //OL de errores
-
         db.User.findOne({
             where: [{email: form.email}]
         })
+
         .then(function(userFound){        
-            if (userFound == null){ //USER NO EXISTE EN LA DB
+            let errors = {}; //OL de errores
+
+            if (userFound == undefined){ //USER NO EXISTE EN LA DB
                 errors.message = "El email ingresado no existe";
                 res.locals.errors = errors;
                 return res.render('login');
@@ -82,7 +82,8 @@ let profileController = {
                     //Preguntar si el usuario tildó el checkbox para recordarlo
                     if(form.recordarme != undefined){
                         res.cookie('recordarme', 'req.session.user', {maxAge: 1000 * 60 * 100})
-                    } return res.redirect('/');
+                    } 
+                    return res.redirect('/');
                 } else {
                     errors.message = "La contraseña ingresada es incorrecta";
                     res.locals.errors = errors;
@@ -93,7 +94,6 @@ let profileController = {
             console.log(error);
         }) 
     },
-
     logout: function(req, res){
         req.session.destroy(); //destruyo la session
         return res.redirect('/'); 

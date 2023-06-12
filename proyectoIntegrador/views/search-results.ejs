@@ -16,7 +16,7 @@
 			<div class="container products-wrapper">
 				<div class="row">
 					<div class="col-12">
-						<h2 class="products-title">Resultados de búsqueda</h2>
+						<h2 class="products-title">Resultados de búsqueda para: <%= results %></h2>
 					</div>
 				
 					<!-- Show mis productos -->
@@ -25,12 +25,14 @@
 					<% for(let i=0; i<products.length; i++){ %>
 						<div class="col-12 col-sm-6 col-lg-3">
 							<section class="product-box">
-							 	<a href="/products/id/<%= products[i].id%>"></a> 
+								<a href="/products/id/<%= products[i].id %>">
 									<figure class="product-box_image">
-										<img src=<%=products[i].image%> alt="<%=products[i].name%>"> 
+										<img src=<%=products[i].image%> alt="<%=products[i].name%>">
 									</figure>
 									<article class="product-box_data">
 										<h2><%=products[i].name%></h2>
+										<img src="<%=products[i].user.profilePicture%>" alt="">
+										<p><%=products[i].user.username%></p>
 										<p><%=products[i].shortDescription%></p>
 										<p>Comentarios: <%=products[i].comments.length%></p>
 									</article>

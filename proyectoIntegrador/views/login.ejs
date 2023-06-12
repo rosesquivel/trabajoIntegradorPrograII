@@ -28,6 +28,11 @@
 					<h3 class="recordarme"><input class="recordarme" type="checkbox" name="recordarme" placeholder="Recordarme">Recordarme</h3>
 				</form>
 			</div>
+
+			<% if(locals.errors != undefined){ %>
+				<p><% locals.message %></p>
+			<% } %>
+
 		</main>
 
 		<!-- Include Footer -->

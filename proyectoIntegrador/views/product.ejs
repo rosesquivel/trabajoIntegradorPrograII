@@ -9,14 +9,14 @@
 			<%-include('./partials/headerLogueado')%> 
 		<% } else { %>
 			<%-include('./partials/header')%>
-		<%}%>
+		<% } %>
 		
 		
 		<main>
 			<!-- Product detail -->
 			<div class="container products-wrapper">
 				<div class="d-flex align-items-center">
-					<h2 class="products-title"><%= product.name%></h2> 
+					<h2 class="products-title"><%= product.name %></h2> 
 					<p class="product-detail-description">
 						<a href="/products/edit">Editar</a>
 					</p>
@@ -24,32 +24,38 @@
 				<div class="product-detail">
 					<div class="row">
 						<article class="col-12 col-lg-8 product-detail-info">
-							<img class="product-detail-img" src=<%=product.image%> alt="<%=product.name%>" >
+							<img class="product-detail-img" src=<%=product.image %> alt="<%=product.name%>" >
 							<p class="product-detail-description">
 								<%=product.longDescription%>
 							</p>
 						</article>
 						<div class="col-12 col-lg-4">
 							<section class="comments">
-								<% for(let i=0; i<comments.length; i++){ %>
-									<%let userId
+								<% for(let i=0; i<product.comments.length; i++){ %>
 									<article>
-										<img src='<%=comments[i].user.profilePicture%>'  alt="">
+										<img src='<%=product.comments[i].profilePicture%>'  alt="">
 										<div class="data">
 											<p class="user">
-											<strong> <a href="/profile"><%=comments[i].user.username
+											<strong> <a href="/profile"><%=product.comments[i].username
 												%></a> </strong>
 											</p>
-											<p class="user"><%=comments[i].comment%></p>
+											<p class="user"><%=product.comments[i].comment%></p>
 										</div>
 									</article>
 								<% } %>
 							</section>
 
-							<form class="form" action="/products/id/<%= product.id %>" method="GET">
-								<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-								<button type="submit" class="button-send">Enviar comentario</button>
-							</form>
+								<% if (locals.user != undefined) { %>
+									<form class="form" action="/products/comment/<%= product.id %>" method="POST">
+										<input class="form-input" type="text" value="" placeholder="Agregar comentario" name="comment">
+										<button type="submit" class="button-send">Enviar comentario</button>
+									</form>
+								<% } else{ %>
+									<form class="form" action="/profile/login" method="get">
+										<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+										<button type="submit" class="button-send">Es necesario iniciar sesión para comentar</button>
+									</form>	
+								<% } %>
 							<hr>
 						</div>
 					</div>
