@@ -12,12 +12,12 @@
 			<section class="info-usuario container products-wrapper">
 				<div class="row">
 					<div class="img-container offset-3 col-2">
-						<img src=<%= users.profilePicture %> alt="foto de perfil" class="foto-perfil">
+						<img src=<%= user.profilePicture %> alt="foto de perfil" class="foto-perfil">
 					</div>
 					<div class="data-container col-6">
 						<div class="d-flex align-items-center">
 							<h1 class="main-title">
-								<%= users.username %>
+								<%= user.username %>
 								<a href="/profile/edit">
 									<i class="fas fa-cog"></i>
 								</a>
@@ -25,11 +25,11 @@
 							<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 						</div>
 						<div>
-							<h4 class="email"><i><%= users.email %></i></h4>
+							<h4 class="email"><i><%= user.email %></i></h4>
 							<ul>
-								<li><%= users.cantproducts %></li>
-								<li><%= users.follows %></li>
-								<li><%= users.comments %></li>
+								<li><%= user.cantproducts %></li>
+								<li><%= user.follows %></li>
+								<li><%= user.comments %></li>
 							</ul>
 						</div>
 					</div>
@@ -53,8 +53,10 @@
 									</figure>
 									<article class="product-box_data">
 										<h2><%=product[i].name%></h2>
+										<img src="<%=product[i].user.profilePicture%>" alt="">
+										<p><%=product[i].user.username%></p>
 										<p><%=product[i].shortDescription%></p>
-										<p>Comentarios: 5</p>
+										<p>Comentarios: <%=product[i].comments.length%></p>
 									</article>
 								</a>
 							</section>
