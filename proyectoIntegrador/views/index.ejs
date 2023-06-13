@@ -34,10 +34,9 @@
 									</figure>
 									<article class="product-box_data">
 										<h2><%=product[i].name%></h2>
-										<img src="<%=product[i].user.profilePicture%>" alt="">
-										<p><%=product[i].user.username%></p>
 										<p><%=product[i].shortDescription%></p>
 										<p>Comentarios: <%=product[i].comments.length%></p>
+										<a href="/profile">Creador: <%=product[i].user.username%></a>
 									</article>
 								</a>
 							</section>

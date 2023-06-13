@@ -5,26 +5,32 @@ let bcryptjs = require('bcryptjs');
 
 let profileController = {
     profile: function(req, res){
+        let id = req.session.user.id
+        console.log(id)
         let rel ={
             include: [
-                { association: 'user'}
+                { association: 'user'},
+                { association: 'product'},
+                { association: 'comments'}
             ]
         };
 
-        //Me fijo quien es el usuario (busco el ID)
-        let user = {where: [{userId: req.session.user.id}]}
-       
-        //Me fijo que productos tiene
-        db.Product.findAll(user, rel)
-        .then(function(productsAll){
-            return res.send(productsAll)
-            /* return res.render('profile', {
-            product: productsAll
-        }); */
+        db.User.findByPk(id, rel)
+        .then(function(results){
+            let session = req.session.user;
+            let user = false;
+            if(session != undefined && id == req.session.user.id){
+                res.locals.user = results.dataValues;
+                user = true;
+            }
+            return res.send(results)
+            // return res.render( 'profile', {
+            //     profile: results, user: user
+            // });
         })
         .catch(function(error){
             console.log(error);
-        })
+        });
     },
     edit: function(req, res){
     },
@@ -75,7 +81,7 @@ let profileController = {
             let newUser = {
                 username: form.username,
                 email:form.email,
-                password: bcriptjs.hashSync(form.password, 10), //encripto la contraseña
+                password: bcryptjs.hashSync(form.password, 10), //encripto la contraseña
                 profilePicture: form.profilePicture,
                 bDate: form.bDate,
                 dni: form.dni,

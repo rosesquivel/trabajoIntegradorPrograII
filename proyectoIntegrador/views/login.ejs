@@ -17,6 +17,9 @@
 				<div class="row">
 					<div class="col-12">
 						<h2 class="products-title">Ingresá</h2>
+						<% if(locals.errors){ %>
+							<p class="products-title"><%= errors.message %></p>
+						<% } %>
 					</div>
 				</div>
 
@@ -27,10 +30,6 @@
 					<h3 class="recordarme"><input class="recordarme" type="checkbox" name="recordarme" >Recordarme</h3>
 				</form>
 			</div>
-
-			<% if(locals.errors){ %>
-				<p><%= errors.message %></p>
-			<% } %>
 
 			<h3>¿Aún no tienes una cuenta? <a href="/profile/register">Regístrate</a></h3> 
 
