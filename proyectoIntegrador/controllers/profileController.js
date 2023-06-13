@@ -5,13 +5,14 @@ let bcryptjs = require('bcryptjs');
 
 let profileController = {
     profile: function(req, res){
-        let id = req.session.user.id
-        console.log(id)
+        let id = req.params.id;
+        
         let rel ={
             include: [
-                { association: 'user'},
-                { association: 'product'},
-                { association: 'comments'}
+                { association: 'products',
+                    include: [
+                        { association: 'comments'}
+                    ]}
             ]
         };
 
@@ -23,16 +24,19 @@ let profileController = {
                 res.locals.user = results.dataValues;
                 user = true;
             }
-            return res.send(results)
-            // return res.render( 'profile', {
-            //     profile: results, user: user
-            // });
+            /* return res.send(results) */
+            return res.render( 'profile', {
+                 profile: results, user: user
+            });
         })
         .catch(function(error){
             console.log(error);
         });
     },
     edit: function(req, res){
+    },
+    editProfile: function(req, res){
+
     },
     register: function(req, res){
         if (req.session.user != undefined){
