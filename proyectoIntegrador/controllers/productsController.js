@@ -22,7 +22,6 @@ let productsController = {
         //Encuentra el producto con la pk
         db.Product.findByPk(id, rel)
         .then(function(oneProduct){
-            // return res.send(oneProduct)
             return res.render('product', {
                 product: oneProduct
            });
@@ -117,26 +116,17 @@ let productsController = {
         })
     },
     productDelete: function(req, res){
-        if(req.session.user == undefined){
-            return res.redirect('/login')
-        } else{
-            idProduct = req.body.id;
-            let product = {where: [{id: idProduct}]};
+        let idProduct = req.body.id;
+        let product = {where: [{id: idProduct}]};
 
-            db.Comment.destroy(product) //elimino primero los comentarios
-            .then(function(results){
-                db.Comment.destroy(product)
-                return res.redirect(`/profile/id/${req.session.user.id}`)
-                
-            })
-            .then(function(){
-                res.redirect(`/profile/${req.session.user.id}`)
-            })
-            .catch(function(error){
-                console.log(error);
-            })
-        } 
-    }
+        db.Product.destroy(product)
+        .then(function(results){
+            return res.redirect(`/profile/id/${req.session.user.id}`)
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    } 
 };
 
 module.exports = productsController;

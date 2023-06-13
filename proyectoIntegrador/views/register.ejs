@@ -17,10 +17,13 @@
 				<div class="row">
 					<div class="col-12">
 						<h2 class="products-title">Regístrate</h2>
+						<% if(locals.errors){ %>
+							<p class="products-title"><%= errors.message %></p>
+						<% } %>
 					</div>
 				</div>
 				
-				<form class="form-register" action="login" method="POST"> 
+				<form class="form-register" action="/profile/register" method="POST"> 
 					<input class="controls" type="text" name="username" id="username" placeholder="Nombre de usuario">
 					<input class="controls" type="email" name="email" id="email" placeholder="Email">
 					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña">
@@ -32,9 +35,7 @@
 				</form>
 			</div>
 
-			<% if(locals.errors){ %>
-				<p><%= errors.message %></p>
-			<% } %>
+			
 
 			<h3>¿Ya tienes una cuenta? <a href="/profile/login">Ingresá</a></h3> 
 

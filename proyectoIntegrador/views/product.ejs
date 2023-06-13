@@ -18,18 +18,16 @@
 				<div class="d-flex align-items-center">
 					<h2 class="products-title"><%= product.name %></h2>
 					<h3 class="product-detail-description"><a href="/profile"><%= product.user.username %></a></h3>
-					<% if (locals.user != undefined) { %> <!--Chequeamos si hay un usuario logeado-->
-						<% if (locals.user.id == id) { %> <!--Chequeamos si el usuario logeado es el mismo que el dueño del producto-->
+					<% if (locals.user != undefined && locals.user.id == product.user.id) { %> <!--Chequeamos si hay un usuario logeado y chequeamos si el usuario logeado es el mismo que el dueño del producto-->
 							<p class="product-detail-description">
-								<a href="/products/edit">Editar</a>
+								<a href="/products/edit/<%= product.id %>">Editar</a>
 							</p>
-						<form class="form" action="/products/delete/<%= product.id %>" method="POST">
-							<button type="submit" class="buy-now-button">BORRAR</button>
+						<form class="form" action="/products/delete" method="POST">
+							<button type="submit" class="buy-now-button">Eliminar</button>
 						</form>
-						<% } %>
-					<% } %>			
-					
+					<% } %>		
 				</div>
+
 				<div class="product-detail">
 					<div class="row">
 						<article class="col-12 col-lg-8 product-detail-info">
