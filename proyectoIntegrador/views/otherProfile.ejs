@@ -5,7 +5,11 @@
 
 	<body>
 		<!-- Include Header -->
-		<%-include('./partials/headerLogueado')%>
+		<% if (locals.user != undefined) { %>
+			<%-include('./partials/headerLogueado')%> 
+		<% } else { %>
+			<%-include('./partials/header')%>
+		<%}%>
 
 		<main>
 			<!-- Datos del usuario -->
@@ -17,18 +21,14 @@
 					<div class="data-container col-6">
 						<div class="d-flex align-items-center">
 							<h1 class="main-title">
-								<%= profile.username %>	
-								<% if(user){ %>
-									<a href="/profile/edit"><i class="fas fa-cog"></i></a>
-								<% } else { %>
-									<a class="btn mt-3 ml-4" href="">SEGUIR</a>
-								<% } %>
+							<%= profile.username %>	
+							<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 							</h1>
 						</div>
 						<div>
 							<h4 class="email"><i><%= profile.email %></i></h4>
 							<ul>
-								<li><%= profile.products.length %> productos</li>
+								<li><%= profile.products.length %> productos cargados</li>
 							</ul>
 						</div>
 					</div>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 	<!-- Include Head -->
-	<% if (locals.user != undefined) { %>
-		<%-include('./partials/headerLogueado')%> 
-	<% } else { %>
-		<%-include('./partials/header')%>
-	<%}%>
+	<%-include('./partials/head')%>
 
 	<body>
 		<!-- Include Header -->
-		<%-include('./partials/headerLogueado')%>
+		<% if (locals.user != undefined) { %>
+			<%-include('./partials/headerLogueado')%> 
+		<% } else { %>
+			<%-include('./partials/header')%>
+		<%}%>
 
 		<!-- Formularaio -->
 		<main class="container">
@@ -20,12 +20,11 @@
 					</div>
 				</div>
 
-				<form class="form-register" action="/profile" method="GET">
-					<input class="controls" type="file" name="images" id="images" placeholder="Inserte una imagen" required>
-					<input class="controls" type="text" name="nombre" id="nombre" placeholder="Nombre del producto" required>
-					<input class="controls" type="text" name="descripcion" id="descripcion" placeholder="Descripción detallada" required>
-					<input class="controls" type="text" name="descripcion" id="descripcion" placeholder="Descripción breve" required>
-					<input class="controls" type="date" name="fecha" id="fecha" placeholder="Fecha de carga" required>
+				<form class="form-register" action="/products/add" method="POST">
+					<input class="controls" type="text" name="image" id="image" placeholder="Imagen del producto">
+					<input class="controls" type="text" name="name" id="name" placeholder="Nombre del producto">
+					<input class="controls" type="text" name="longDescription" id="longDescription" placeholder="Descripción detallada">
+					<input class="controls" type="text" name="shortDescription" id="shortDescription" placeholder="Descripción breve">
 					<button class="button-send" type="submit">Enviar</button>
 				</form>	
 			</div>

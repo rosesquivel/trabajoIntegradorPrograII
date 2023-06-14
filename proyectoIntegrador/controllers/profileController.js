@@ -1,19 +1,45 @@
 const { name } = require("ejs");
 let db = require("../database/models");
 let op = db.Sequelize.Op;
-let bcriptjs = require('bcryptjs');
+let bcryptjs = require('bcryptjs');
 
 let profileController = {
     profile: function(req, res){
-        // return res.render('profile', {
-        //     product: db.products,
-        //     users: db.users
-        // })
+        let id = req.params.id;
+        let rel ={
+            order: [
+                ['createdAt', 'DESC']
+            ],
+            include: [
+                { association: 'products',
+                    include: [
+                        { association: 'comments'}
+                    ]}
+            ]
+        };
+        db.User.findByPk(id, rel)
+        .then(function(results){
+            let session = req.session.user;
+            if(session != undefined && id == req.session.user.id){
+                res.locals.user = results.dataValues;
+                return res.render('profile', {
+                    profile: results
+                });
+            } else {
+                return res.render('otherProfile', {
+                    profile: results
+                });
+            }
+        })
+        .catch(function(error){
+            console.log(error);
+        });
     },
     edit: function(req, res){
-        // return res.render('profile-edit', {
-        //     users: db.users
-        // })
+
+    },
+    editProfile: function(req, res){
+
     },
     register: function(req, res){
         if (req.session.user != undefined){
@@ -22,30 +48,61 @@ let profileController = {
             return res.render('register');
         };
     },
-    store: function(req,res){
+    store: function(req, res){ 
+        /* RECOPILO DATOS DEL FORM DEL LOGIN */
+        let errors ={};
         let form = req.body;
+        
+        db.User.findOne({
+            where: [{email: form.email}]
+        })
 
-        //Recopilo los datos del form
-        let user = {
-            username: form.username,
-            email:form.email,
-            password: bcriptjs.hashSync(form.password, 10), //encripto la contraseña
-            profilePicture: form.profilePicture,
-            bDate: form.bDate,
-            dni: form.dni,
-            phone: form.phone,
+        .then(function(userFound){  
+            if (userFound != null){ //compara el email ingresado con los de la base de datos
+                errors.message = "El email ingresado ya existe";
+                res.locals.errors = errors;
+                return res.render('register');
+        } 
+    })
+        .catch(function(error){
+            console.log(error);
+        })
+
+        if(form.email == ''){
+            errors.message = 'Debes ingresar un email'
+            res.locals.errors = errors;
+            return res.render('register');
+
+        } else if (form.password == ''){
+            errors.message = 'Debes ingresar una contraseña'
+            res.locals.errors = errors;
+            return res.render('register');
+
+        } else if (form.password.length <= 3){
+            errors.message = 'La contraseña debe tener más de 3 dígitos'
+            res.locals.errors = errors;
+            return res.render('register');
+
+        } else{
+            let form = req.body;
+            let newUser = {
+                username: form.username,
+                email:form.email,
+                password: bcryptjs.hashSync(form.password, 10), //encripto la contraseña
+                profilePicture: form.profilePicture,
+                bDate: form.bDate,
+                dni: form.dni,
+                phone: form.phone,
+            };
+
+            db.User.create(newUser)
+                .then(function(result){
+                    return res.redirect('/profile/login');
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
         }
-
-        //Guardo mis datos con el método Create
-        db.User.create(user)
-            .then(function(newUser){
-                return res.redirect('/profile/login');
-            })
-            .catch(function(error){
-                console.log(error);
-            })
-
-        //let errors = {}
     },
     login: function(req,res){
         //Si el usuario está logueado, ir al inicio, de lo contrario, mostrar el form de login
@@ -58,45 +115,61 @@ let profileController = {
     processLogin: function(req, res){ 
         /* RECOPILO DATOS DEL FORM DEL LOGIN */
         let form = req.body;
+        let emailForm = form.email;
+        let passwordForm = form.password;
 
-        /* VALIDAR CAMPOS DEL FORM */  
-        let errors = {}; //OL de errores
+        let errors ={};
 
-        db.User.findOne({
-            where: [{email: form.email}]
-        })
-        .then(function(userFound){        
-            if (userFound == null){ //USER NO EXISTE EN LA DB
-                errors.message = "El email ingresado no existe";
-                res.locals.errors = errors;
-                return res.render('login');
-            } else {
-                //PASSWORD NO COINCIDE CON LA DB
-                let compare = bcriptjs.compareSync(form.password, userFound.password) 
-                if(compare == true){
-                    //Pongo al user en session
-                    req.session.user = {
-                        email: form.email,
-                        username: form.username,
+        if(emailForm == ''){
+            errors.message = 'Debes ingresar un email'
+            res.locals.errors = errors;
+            return res.render('login');
+        } else if (passwordForm == ''){
+            errors.message = 'Debes ingresar una contraseña'
+            res.locals.errors = errors;
+            return res.render('login');
+        } else{
+            db.User.findOne({
+                where: [{email: emailForm}]
+            })
+
+            .then(function(userFound){        
+                if (userFound != undefined){ //si el usuario esta ok, que evalue la contraseña
+                    
+                    let compare = bcryptjs.compareSync(passwordForm, userFound.password);
+                    if(compare){
+                        //Pongo al user en session
+                        req.session.user = userFound.dataValues;
+                        //Preguntar si el usuario tildó el checkbox para recordarlo
+                       
+                        if(form.recordarme != undefined){
+                            res.cookie('userId', userFound.dataValues.id , {maxAge: 1000 * 60 * 100})
+                        } 
+                        return res.redirect('/');
+
+                        } else {
+                            errors.message = "Tu contraseña es incorrecta. Compruébala.";
+                            res.locals.errors = errors;
+                            return res.render('login');
                     }
-                    //Preguntar si el usuario tildó el checkbox para recordarlo
-                    if(form.recordarme != undefined){
-                        res.cookie('recordarme', 'req.session.user', {maxAge: 1000 * 60 * 100})
-                    } return res.redirect('/');
-                } else {
-                    errors.message = "La contraseña ingresada es incorrecta";
+                } else { //si el usuario está mal, que le avise
+                    errors.message = "El email ingresado no existe";
                     res.locals.errors = errors;
                     return res.render('login');
-                };
-        }})
-        .catch(function(error){
-            console.log(error);
-        }) 
+            }})
+            .catch(function(error){
+                console.log(error);
+            });
+        }  
     },
-
     logout: function(req, res){
-        req.session.destroy(); //destruyo la session
-        return res.redirect('/'); 
+        req.session.destroy();//destruyo la session
+        if(req.cookies.userId != undefined){
+            res.clearCookie('userId');
+            return res.redirect('/');
+        } else {
+            return res.redirect('/'); 
+        }
     } 
 };
 

@@ -6,7 +6,6 @@ var logger = require('morgan');
 const session = require('express-session');
 const db = require('./database/models');
 
-
 /* Requiero rutas */
 var indexRouter = require('./routes/index');
 let productsRouter = require('./routes/products');
@@ -37,17 +36,15 @@ app.use(function(req, res, next){
     res.locals.user = req.session.user
     return next();
   }
-  next(); //seguí procesando app js, independientemente de que se ejecute o no el if
-});
+  return next(); //seguí procesando app js, independientemente de que se ejecute o no el if
+}); 
 
-
-
-//Configuro las cookies    VERRRRRRRRRR
-/* app.use(function(req, res, next){
+//Configuro las cookies
+app.use(function(req, res, next){
   //Si la cookie existe en el nav del usuario y no existe en un usuario en session
   if(req.cookies.userId != undefined && req.session.user == undefined){
     let idUserCookie = req.cookies.userId; //lo definimos
-    user.findByPk(idUserCookie)
+    db.User.findByPk(idUserCookie)
     .then(function(user){
       req.session.user = user.dataValues; //carga el usuario en session (back end)
       res.locals.user = user.dataValues; // carga el usuario en locals (front end)
@@ -59,7 +56,7 @@ app.use(function(req, res, next){
   } else{
     return next();
   }
-}); */
+});
 
 //Uso rutas
 app.use('/', indexRouter);

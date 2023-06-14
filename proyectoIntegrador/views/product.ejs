@@ -9,48 +9,66 @@
 			<%-include('./partials/headerLogueado')%> 
 		<% } else { %>
 			<%-include('./partials/header')%>
-		<%}%>
+		<% } %>
 		
 		
 		<main>
 			<!-- Product detail -->
 			<div class="container products-wrapper">
 				<div class="d-flex align-items-center">
-					<h2 class="products-title"><%= product.name%></h2> 
-					<p class="product-detail-description">
-						<a href="/products/edit">Editar</a>
-					</p>
+					<h2 class="products-title"><%= product.name %></h2>
+					<% if (locals.user != undefined && locals.user.id == product.user.id) { %> <!--Chequeamos si hay un usuario logeado y chequeamos si el usuario logeado es el mismo que el dueño del producto-->
+							<p class="product-detail-description">
+								<a href="/products/edit/<%= product.id %>">Editar</a>
+							</p>
+						<form class="form" action="/products/delete" method="POST">
+							<button type="submit" class="buy-now-button">Eliminar</button>
+						</form>
+					<% } %>		
 				</div>
+
 				<div class="product-detail">
 					<div class="row">
 						<article class="col-12 col-lg-8 product-detail-info">
-							<img class="product-detail-img" src=<%=product.image%> alt="<%=product.name%>" >
+							<h3 class="product-detail-description"><a href="/profile/id/<%=product.user.id%>"><%= product.user.username %></a></h3>
+							<img class="product-detail-img" src=<%=product.image %> alt="<%=product.name%>" >
+							<% if (locals.user != undefined) { %>
+								<form class="form" action="/products/id/<%=product.id%>" method="POST">
+									<input class="form-input" type="hidden" value="sí" placeholder="" name="likear">
+									<button class="likear"><i class="fa-regular fa-heart fa-beat fa-2xl emptyHeart" style="color: #5e3f43;"></i></button>
+								</form>	
+								<% } %>
 							<p class="product-detail-description">
 								<%=product.longDescription%>
 							</p>
 						</article>
 						<div class="col-12 col-lg-4">
 							<section class="comments">
-								<% for(let i=0; i<comments.length; i++){ %>
-								
+								<% for(let i=0; i<product.comments.length; i++){ %>
 									<article>
-										<img src='<%=comments[i].user.profilePicture%>'  alt="">
+										<a href="/profile/id/<%=product.comments[i].user.id%>"><img src='<%=product.comments[i].user.profilePicture%>'  alt="imagen de perfil del usuario"></a>
 										<div class="data">
 											<p class="user">
-											<strong> <a href="/profile"><%=comments[i].user.username
+											<strong> <a href="/profile/id/<%=product.comments[i].user.id%>"><%=product.comments[i].user.username
 												%></a> </strong>
 											</p>
-											<p class="user"><%=comments[i].comment%></p>
+											<p class="user"><%=product.comments[i].comment%></p>
 										</div>
 									</article>
 								<% } %>
-							</section>
+						
 
-							<form class="form" action="/products/id/<%= product.id %>" method="GET">
-								<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-								<button type="submit" class="button-send">Enviar comentario</button>
-							</form>
-							<hr>
+								<% if (locals.user != undefined) { %>
+									<form class="form" action="/products/comment/<%=product.id%>" method="POST">
+										<input class="form-input" type="text" value="" placeholder="Agregar comentario" name="comment">
+										<button type="submit" class="button-send" id="sendComment">Enviar comentario</button>
+									</form>
+								<% } else{ %>
+									<button type="submit" class="button-send">Es necesario iniciar sesión para comentar</button>
+									<h3>¿Aún no tienes una cuenta? <a href="/profile/register">Regístrate</a></h3>
+									<h3>¿Ya tienes una cuenta? <a href="/profile/login">Ingresá</a></h3>
+								<% } %>
+							</section>
 						</div>
 					</div>
 				</div>

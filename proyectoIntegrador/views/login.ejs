@@ -17,17 +17,22 @@
 				<div class="row">
 					<div class="col-12">
 						<h2 class="products-title">Ingresá</h2>
+						<% if(locals.errors){ %>
+							<p class="products-title"><%= errors.message %></p>
+						<% } %>
 					</div>
 				</div>
 
 				<form class="form-register" action="/profile/login" method="POST">
 					<input class="controls" type="email" name="email" placeholder="Email">
-					<input class="controls" type="username" name="username" placeholder="Nombre de usuario">
 					<input class="controls" type="password" name="password"  placeholder="Contraseña">
 					<button class="button-send" type="submit">Iniciar sesión</button>
-					<h3 class="recordarme"><input class="recordarme" type="checkbox" name="recordarme" placeholder="Recordarme">Recordarme</h3>
+					<h3 class="recordarme"><input class="recordarme" type="checkbox" name="recordarme" >Recordarme</h3>
 				</form>
 			</div>
+
+			<h3>¿Aún no tienes una cuenta? <a href="/profile/register">Regístrate</a></h3> 
+
 		</main>
 
 		<!-- Include Footer -->
