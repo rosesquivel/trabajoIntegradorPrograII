@@ -3,16 +3,16 @@ let router = express.Router();
 let productsController = require('../controllers/productsController');
 
 //Rutas con get
-router.get('/id/:id', productsController.product);
+router.get('/id/:id', productsController.product); // Las rutas parametrizadas no van arriba
 router.get('/add', productsController.add);
-router.get('/edit', productsController.formEdit);
+router.get('/edit/:id', productsController.formEdit);
 router.get('/searchresults', productsController.search);
 
 //Rutas con post
 router.post('/add', productsController.storeProduct);
 router.post('/comment/:id', productsController.storeComment);
 router.post('/id/:id', productsController.storeLike);
-router.post('/edit', productsController.productEdit);
+router.post('/edit/:id', productsController.productEdit);
 router.post('/delete', productsController.productDelete)
 
 

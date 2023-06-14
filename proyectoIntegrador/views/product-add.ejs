@@ -26,6 +26,11 @@
 					<input class="controls" type="text" name="longDescription" id="longDescription" placeholder="Descripción detallada">
 					<input class="controls" type="text" name="shortDescription" id="shortDescription" placeholder="Descripción breve">
 					<button class="button-send" type="submit">Enviar</button>
+					<% if (locals.errors) { %>
+						<% if (locals.errors.message != '') { %>
+							<p class="error"><%= locals.errors.message %></p>
+						<% } %>
+					<% } %>
 				</form>	
 			</div>
 		</main>	

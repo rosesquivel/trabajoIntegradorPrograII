@@ -36,9 +36,103 @@ let profileController = {
         });
     },
     edit: function(req, res){
+        if (req.session.user != undefined) {
+            let id = req.params.id;
+
+            db.User.findByPk(id)
+            .then(function(oneProfile){
+                if (oneProfile != undefined) {
+                    if (req.session.user.id != oneProfile.id) {
+                        return res.redirect('/')
+                    } else {
+                        return res.render('profile-edit', {usuario: oneProfile})
+                    }
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+
+        } else {
+            return res.redirect('/profile/login')
+        }
 
     },
     editProfile: function(req, res){
+
+        let id = req.params.id;
+        let form = req.body;
+        let idUsuario = req.session.user.id;
+
+        let user = {
+            username: '',
+            email: '',
+            password: '',
+            profilePicture: '',
+            bDate: '',
+            dni: '',
+            phone: '',
+        }
+
+        db.User.findByPk(id)
+            .then(function(oneProfile) {
+                if (req.session.user.id != oneProfile.id) {
+                    return res.redirect('/')
+                } else {
+                    if (form.nombre == '') {
+                        user.username = oneProfile.username
+                    } else {
+                        user.username = form.nombre
+                    }
+                    if (form.password == '') {
+                        user.password = oneProfile.password
+                    } else {
+                        user.password = bcryptjs.hashSync(form.password, 10)
+                    }
+                    if (form.fechadenacimiento == '') {
+                        user.bDate = oneProfile.bDate
+                    } else {
+                        user.bDate = form.fechadenacimiento
+                    }
+                    if (form.phone == '') {
+                        user.phone = oneProfile.phone
+                    } else {
+                        user.phone = form.phone
+                    }
+                    if (form.number == '') {
+                        user.dni = oneProfile.dni
+                    } else {
+                        user.dni = form.number
+                    }
+                    if (form.mail == '') {
+                        user.email = oneProfile.email
+                    } else {
+                        user.email = form.mail
+                    }
+                    if (form.images == '') {
+                        user.profilePicture = oneProfile.profilePicture
+                    } else {
+                        user.profilePicture = form.images
+                    }
+
+                    let rel = {
+                        where: {
+                            id: idUsuario
+                        }
+                    }
+
+                    db.User.update(user, rel)
+                        .then(function(resultado) {
+                            return res.redirect('/profile/id/' + id)
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        })
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            })
 
     },
     register: function(req, res){

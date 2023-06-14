@@ -19,7 +19,7 @@
 							<h1 class="main-title">
 								<%= profile.username %>	
 								<% if(user){ %>
-									<a href="/profile/edit"><i class="fas fa-cog"></i></a>
+									<a href="/profile/edit/<%= profile.id %>"><i class="fas fa-cog"></i></a>
 								<% } else { %>
 									<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 								<% } %>
