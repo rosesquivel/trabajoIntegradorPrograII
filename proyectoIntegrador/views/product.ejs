@@ -21,7 +21,8 @@
 							<p class="product-detail-description">
 								<a href="/products/edit/<%= product.id %>">Editar</a>
 							</p>
-						<form class="form" action="/products/delete" method="POST">
+						<form class="form" action="/products/delete/" method="POST">
+							<input type="hidden" name="id" value="<%=product.id%>"> <!-- ver si de esta forma esta tomando el id del usuario-->
 							<button type="submit" class="buy-now-button">Eliminar</button>
 						</form>
 					<% } %>		
