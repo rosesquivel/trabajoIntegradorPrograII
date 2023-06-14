@@ -138,6 +138,7 @@ let productsController = {
     },
     productDelete: function(req, res){
         let idProduct = req.body.id;
+        // res.send(idProduct)
         let product = {where: [{id: idProduct}]};
 
         db.Product.destroy(product)
