@@ -267,9 +267,10 @@ let profileController = {
         };
         db.User.findAll(rel)
             .then(function (searchUsers) {
+                
                 return res.render('results-users', {
                     results: results,
-                    user: searchUsers
+                    resultsUser: searchUsers
                 });
             })
             .catch(function (error) {

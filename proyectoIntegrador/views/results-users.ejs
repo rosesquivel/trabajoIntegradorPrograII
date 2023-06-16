@@ -16,21 +16,21 @@
 			<div class="container products-wrapper">
 				<div class="row">
 					<!-- Show mis productos -->
-					<% if (user != '' ) {%>
+					<% if (resultsUser != '' ) {%>
 						<div class="col-12">
 							<h2 class="products-title">Resultados de búsqueda para: <%= results %></h2>
 						</div>
-					<% for(let i=0; i<user.length; i++){ %>
+					<% for(let i=0; i<resultsUser.length; i++){ %>
 						<div class="col-12 col-sm-6 col-lg-3">
 							<section class="product-box">
-								<a href="/profile/id/<%= user[i].id %>">
+								<a href="/profile/id/<%= resultsUser[i].id %>">
 									<figure class="product-box_image">
-										<img src=<%=user[i].profilePicture%> alt="<%=user[i].username%>">
+										<img src=<%=resultsUser[i].profilePicture%> alt="<%=resultsUser[i].username%>">
 									</figure>
 									<article class="product-box_data">
-										<h2><%=user[i].username%></h2>
-										<p><%=user[i].email%></p>
-										<p><%=user[i].products.length%> productos</p>
+										<h2><%=resultsUser[i].username%></h2>
+										<p><%=resultsUser[i].email%></p>
+										<p><%=resultsUser[i].products.length%> productos</p>
 									</article>
 								</a>
 							</section>
