@@ -18,7 +18,7 @@
 					<div class="col-12">
 						<h2 class="products-title">Regístrate</h2>
 						<% if(locals.errors){ %>
-							<p class="products-title"><%= errors.message %></p>
+							<p class="error"><%= errors.message %></p>
 						<% } %>
 					</div>
 				</div>
@@ -35,8 +35,7 @@
 				</form>
 			</div>
 
-			<h3>¿Ya tienes una cuenta? <a href="/profile/login">Ingresá</a></h3> 
-
+			<h3 class="question-register">¿Ya tienes una cuenta?<a class="ingresá" href="/profile/login"> Ingresá</a></h3> 
 		</main>
 				
 		<!-- Include Footer -->

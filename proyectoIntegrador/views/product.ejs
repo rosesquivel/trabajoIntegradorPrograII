@@ -18,7 +18,7 @@
 				<div class="d-flex align-items-center">
 					<h2 class="products-title"><%= product.name %></h2>
 					<% if (locals.user != undefined && locals.user.id == product.user.id) { %> <!--Chequeamos si hay un usuario logeado y chequeamos si el usuario logeado es el mismo que el dueño del producto-->
-							<p class="product-detail-description">
+							<p class="product-edit">
 								<a href="/products/edit/<%= product.id %>">Editar</a>
 							</p>
 						<form class="form" action="/products/delete/" method="POST">
@@ -66,8 +66,6 @@
 									</form>
 								<% } else{ %>
 									<button type="submit" class="button-send">Es necesario iniciar sesión para comentar</button>
-									<h3>¿Aún no tienes una cuenta? <a href="/profile/register">Regístrate</a></h3>
-									<h3>¿Ya tienes una cuenta? <a href="/profile/login">Ingresá</a></h3>
 								<% } %>
 							</section>
 						</div>

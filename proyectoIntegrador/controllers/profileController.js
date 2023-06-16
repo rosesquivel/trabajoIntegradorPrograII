@@ -8,7 +8,7 @@ let profileController = {
         let id = req.params.id;
         let rel ={
             order: [
-                ['createdAt', 'DESC']
+                ['products', 'createdAt', 'DESC']
             ],
             include: [
                 { association: 'products',
@@ -37,17 +37,13 @@ let profileController = {
     },
     edit: function(req, res){
         if (req.session.user != undefined) {
-            let id = req.params.id;
+            let id = req.session.user.id;
 
             db.User.findByPk(id)
             .then(function(oneProfile){
-                if (oneProfile != undefined) {
-                    if (req.session.user.id != oneProfile.id) {
-                        return res.redirect('/')
-                    } else {
-                        return res.render('profile-edit', {usuario: oneProfile})
-                    }
-                }
+                return res.render('profile-edit', {
+                    user: oneProfile
+                });
             })
             .catch(function(error) {
                 console.log(error);
@@ -56,15 +52,12 @@ let profileController = {
         } else {
             return res.redirect('/profile/login')
         }
-
     },
     editProfile: function(req, res){
-
-        let id = req.params.id;
         let form = req.body;
         let idUsuario = req.session.user.id;
 
-        let user = {
+       /*  let user = {
             username: '',
             email: '',
             password: '',
@@ -72,9 +65,9 @@ let profileController = {
             bDate: '',
             dni: '',
             phone: '',
-        }
+        } */
 
-        db.User.findByPk(id)
+        /* db.User.findByPk(id)
             .then(function(oneProfile) {
                 if (req.session.user.id != oneProfile.id) {
                     return res.redirect('/')
@@ -113,27 +106,17 @@ let profileController = {
                         user.profilePicture = oneProfile.profilePicture
                     } else {
                         user.profilePicture = form.images
-                    }
+                    } */
 
-                    let rel = {
-                        where: {
-                            id: idUsuario
-                        }
-                    }
+        let rel = {where: [{id: idUsuario}]}
 
-                    db.User.update(user, rel)
-                        .then(function(resultado) {
-                            return res.redirect('/profile/id/' + id)
-                        })
-                        .catch(function(error) {
-                            console.log(error);
-                        })
-                }
-            })
-            .catch(function(error) {
-                console.log(error);
-            })
-
+        db.User.update(form, rel)
+        .then(function(resultado) {
+            return res.redirect('/profile/id/' + idUsuario)
+        })
+        .catch(function(error) {
+            console.log(error);
+        })
     },
     register: function(req, res){
         if (req.session.user != undefined){
@@ -142,10 +125,9 @@ let profileController = {
             return res.render('register');
         };
     },
-    store: function(req, res){ 
-        /* RECOPILO DATOS DEL FORM DEL LOGIN */
-        let errors ={};
+    storeRegister: function(req, res){ 
         let form = req.body;
+        let errors ={};
         
         db.User.findOne({
             where: [{email: form.email}]
@@ -162,7 +144,7 @@ let profileController = {
             console.log(error);
         })
 
-        if(form.email == ''){
+        if (form.email == ''){
             errors.message = 'Debes ingresar un email'
             res.locals.errors = errors;
             return res.render('register');
@@ -178,15 +160,19 @@ let profileController = {
             return res.render('register');
 
         } else{
-            let form = req.body;
+            let profilePicture = '/images/users/user.png';
+            if (form.profilePicture != ''){
+                profilePicture = form.profilePicture;
+            }
+
             let newUser = {
                 username: form.username,
                 email:form.email,
                 password: bcryptjs.hashSync(form.password, 10), //encripto la contraseña
-                profilePicture: form.profilePicture,
+                profilePicture: profilePicture,
                 bDate: form.bDate,
                 dni: form.dni,
-                phone: form.phone,
+                phone: form.phone
             };
 
             db.User.create(newUser)
@@ -207,7 +193,6 @@ let profileController = {
         };
     },
     processLogin: function(req, res){ 
-        /* RECOPILO DATOS DEL FORM DEL LOGIN */
         let form = req.body;
         let emailForm = form.email;
         let passwordForm = form.password;
@@ -264,7 +249,33 @@ let profileController = {
         } else {
             return res.redirect('/'); 
         }
-    } 
+    },
+    searchUsers: function(req, res){
+        let results = req.query.search;
+        let rel = {
+            where: [
+                {
+                    [op.or]: [
+                        { username: { [op.like]: `%${results}%` } },
+                        { email: { [op.like]: `%${results}%` } }
+                    ]
+                }
+            ],
+            include: [
+                { association: "products" }
+            ]
+        };
+        db.User.findAll(rel)
+            .then(function (searchUsers) {
+                return res.render('results-users', {
+                    results: results,
+                    user: searchUsers
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
 };
 
 module.exports = profileController;

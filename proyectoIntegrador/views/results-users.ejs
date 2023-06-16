@@ -5,7 +5,7 @@
 
 	<body>
 		<!-- Include Header -->
-		<% if (locals.user != undefined) { %>
+		<% if (locals.user != '') { %>
 			<%-include('./partials/headerLogueado')%> 
 		<% } else { %>
 			<%-include('./partials/header')%>
@@ -16,22 +16,21 @@
 			<div class="container products-wrapper">
 				<div class="row">
 					<!-- Show mis productos -->
-					<% if (product !='' ) {%>
+					<% if (user != '' ) {%>
 						<div class="col-12">
 							<h2 class="products-title">Resultados de búsqueda para: <%= results %></h2>
 						</div>
-					<% for(let i=0; i<product.length; i++){ %>
+					<% for(let i=0; i<user.length; i++){ %>
 						<div class="col-12 col-sm-6 col-lg-3">
 							<section class="product-box">
-								<a href="/products/id/<%= product[i].id %>">
+								<a href="/profile/id/<%= user[i].id %>">
 									<figure class="product-box_image">
-										<img src=<%=product[i].image%> alt="<%=product[i].name%>">
+										<img src=<%=user[i].profilePicture%> alt="<%=user[i].username%>">
 									</figure>
 									<article class="product-box_data">
-										<h2><%=product[i].name%></h2>
-										<p><%=product[i].shortDescription%></p>
-										<p>Comentarios: <%=product[i].comments.length%></p>
-										<a href="/profile/id/<%=product[i].user.id%>"></a>Creador: <%=product[i].user.username%></a>
+										<h2><%=user[i].username%></h2>
+										<p><%=user[i].email%></p>
+										<p><%=user[i].products.length%> productos</p>
 									</article>
 								</a>
 							</section>
@@ -41,7 +40,7 @@
 					<div class="col-12">
 						<h2 class="products-title">No hay resultados para: <%= results %></h2>
 					</div>
-					<h3 class="noSearchResult">Intenta de nuevo con otra palabra</h3>
+					<h3 class="noSearchResult">Intenta de nuevo con otro nombre</h3>
 				<%}%> 
 				</div>
 			</div>

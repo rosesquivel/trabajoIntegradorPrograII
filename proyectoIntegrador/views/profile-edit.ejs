@@ -16,15 +16,15 @@
 					</div>
 				</div>
 
-				<form class="form-register" action="/profile/edit/<%= usuario.id %>" method="POST">
-					<input class="controls" type="text" name="nombre" id="mobre" placeholder="Nombre">
+				<form class="form-register" action="/profile/edit/<%= user.id %>" method="POST">
+					<input class="controls" type="text" name="username" id="username" placeholder="Nombre de usuario" value="<%= user.username %>">
+					<input class="controls" type="email" name="email" id="email" placeholder="Email" value="<%= user.email %>">
 					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña">
-					<input class="controls" type="date" name="fechadenacimiento" id="fechadenacimiento" placeholder="Fecha de nacimiento">
-					<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono">
-					<input class="controls" type="numbers" name="number" id="documento" placeholder="Documento">
-					<input class="controls" type="email" name="mail" id="mail" placeholder="Mail">
-					<input class="controls" type="text" name="images" id="images" placeholder="Inserte una imagen">
-					<button class="button-send" type="submit">Enviar</button>
+					<input class="controls" type="date" name="bDate" id="bDate" placeholder="Fecha de nacimiento" value="<%= user.bDate %>">
+					<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono" value="<%= user.phone %>">
+					<input class="controls" type="numbers" name="dni" id="dni" placeholder="DNI" value="<%= user.dni %>">
+					<input class="controls" type="text" name="profilePicture" id="profilePicture" placeholder="Imagen de perfil" value="<%= user.profilePicture %>">
+					<button class="button-send" type="submit">Guardar cambios</button>
 				</form>
 			</div>
 		</main>

@@ -12,6 +12,14 @@
 		<%}%>
 
 		<main>
+			<!-- Buscador de usuarios -->
+			<div class="col-7 col-md-6">
+                <form class="search-form" action="/profile/searchresults" method="GET">
+                    <input type="search" name="search" value='' placeholder="Buscar productos, marcas y más" class="search-form_input">
+                    <button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
 			<!-- Datos del usuario -->
 			<section class="info-usuario container products-wrapper">
 				<div class="row">
@@ -39,7 +47,7 @@
 			<div class="container products-wrapper">
 				<div class="row">
 					<div class="col-12">
-						<h2 class="products-title">Mis productos</h2>
+						<h2 class="products-title">Productos</h2>
 					</div>
 
 					<!-- Show mis productos -->
@@ -52,9 +60,9 @@
 									</figure>
 									<article class="product-box_data">
 										<h2><%=profile.products[i].name%></h2>
-										<p><%=profile.username%></p>
 										<p><%=profile.products[i].shortDescription%></p>
 										<p>Comentarios: <%=profile.products[i].comments.length%></p>
+										<a class="creador" href="/profile/id/<%=profile.id%>">Creador: <%=profile.username%></a>
 									</article>
 								</a>
 							</section>

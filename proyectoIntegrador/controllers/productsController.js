@@ -10,6 +10,9 @@ let op = db.Sequelize.Op;
 let productsController = {
     product: function (req, res) {
         let rel = {
+            order: [
+                ['comments', 'createdAt', 'DESC']
+            ],
             include: [
                 { association: "user" },
                 {
@@ -47,27 +50,22 @@ let productsController = {
         let errors = {}
         if (req.session.user == undefined) {
             errors.message = 'Se debe loguear para comentar'
-            res.locals.errors = errors
-            return res.render(`/products/id/${id}`)
-        } else if (form.comment === '') {
+            res.locals.errors = errors;
+            return res.render(`/products/id/${id}`);
+
+        } else if (form.comment == '') {
             errors.message = 'Ningún campo puede quedar vacío'
-            res.locals.errors = errors
-            return res.render(`/products/id/${id}`)
+            res.locals.errors = errors;
+            return res.render(`/products/id/${id}`);
+
         } else {
-            //Recopilo los datos del form
             comment.comment = form.comment,
             comment.idProduct = req.params.id,
             comment.userId = req.session.user.id
         }
 
-        let viewComments = {
-            order: [
-                ["createdAt", 'DESC']
-            ]
-        };
         db.Comment.create(comment, viewComments)
             .then(function (result) {
-                // return res.send(result)
                 return res.redirect(`/products/id/${req.params.id}`)
             })
             .catch(function (error) {
@@ -76,7 +74,6 @@ let productsController = {
     },
     storeLike: function (req, res) {
         let like = req.body.likear;
-
 
         //if (like == 'yes')
         return res.send(like)
@@ -90,34 +87,46 @@ let productsController = {
     },
     storeProduct: function (req, res) {
         let form = req.body;
+        let errors = {};
 
-        let product = {};
+        if (form.name == '') { 
+            errors.message = 'Es necesario añadir un nombre'
+            res.locals.errors = errors;
+            return res.render('product-add');
 
-        let errors = {}
-        if (form.name === '' || form.longDescription === '' || form.shortDescription === '' ) { //si ponemos la imagen tendria q estar aca yb
-            errors.message = 'Ningún campo puede quedar vacío'
-            res.locals.errors = errors
-            return res.render('product-add')
+        } else if (form.longDescription == '') {
+            errors.message = 'Es necesario añadir una descripción detallada'
+            res.locals.errors = errors;
+            return res.render('product-add');
+
+        } else if (form.shortDescription == ''){
+            errors.message = 'Es necesario añadir una breve descripción'
+            res.locals.errors = errors;
+            return res.render('product-add');
+
         } else {
-            //Recopilo los datos del form
-            product.name = form.name,
-                product.longDescription = form.longDescription,
-                product.shortDescription = form.shortDescription,
-                // product.image = req.file.filename, ver bien como hariamos en el caso de la imgaen
-                product.userId = req.session.user.id
-        }
+            let image = '/images/makeup/product.png';
+            if (form.image != ''){
+                image = form.image;
+            }
 
-        //Guardo los datos con el método Create
-        db.Product.create(product)
-            .then(function (newProduct) {
+            let newProduct = {
+                name: form.name,
+                longDescription: form.longDescription,
+                shortDescription: form.shortDescription,
+                image: image,
+                userId: req.session.user.id
+            };  
+            db.Product.create(newProduct)
+            .then(function (result) {
                 return res.redirect('/')
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            }); 
+        } 
     },
-
-    formEdit: function (req, res) {
+    edit: function (req, res) {
         if (req.session.user != undefined) {
             let id = req.params.id;
 
@@ -177,11 +186,7 @@ let productsController = {
                     product.image = form.images
                 }
 
-                let rel = {
-                    where: {
-                        id: id
-                    }
-                }
+                let rel = {where: {id: id}}
 
                 db.Product.update(product, rel)
                     .then(function (result) {
@@ -194,13 +199,13 @@ let productsController = {
             .catch(function (error) {
                 console.log(error);
             })
-
-
-
     },
-    search: function (req, res) {
+    searchProducts: function (req, res) {
         let results = req.query.search;
         let rel = {
+            order: [
+                ['createdAt', 'DESC']
+            ],
             where: [
                 {
                     [op.or]: [
