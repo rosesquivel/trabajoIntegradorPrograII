@@ -19,7 +19,7 @@
 				<form class="form-register" action="/profile/edit/<%= user.id %>" method="POST">
 					<input class="controls" type="text" name="username" id="username" placeholder="Nombre de usuario" value="<%= user.username %>">
 					<input class="controls" type="email" name="email" id="email" placeholder="Email" value="<%= user.email %>">
-					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña">
+					<input class="controls" type="password" name="password" id="password" placeholder="Contraseña" value="<%= user.password %>">
 					<input class="controls" type="date" name="bDate" id="bDate" placeholder="Fecha de nacimiento" value="<%= user.bDate %>">
 					<input class="controls" type="tel" name="phone" id="phone" placeholder="Teléfono" value="<%= user.phone %>">
 					<input class="controls" type="numbers" name="dni" id="dni" placeholder="DNI" value="<%= user.dni %>">

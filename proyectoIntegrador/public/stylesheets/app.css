@@ -146,14 +146,12 @@ hr {
   background-color: #e1c5c5;
 }
 
-
 .noSearchResult{
   margin: 10px 0 0px 410px;
-  font-size: 2.2em;
-  color: rgb(71, 68, 68);
+  font-size: 2.0em;
+  color: rgb(209, 0, 0);
   font-family: 'Nunito';
 }
-
 
 .col-7{
   max-width: 100%;
@@ -256,13 +254,9 @@ hr {
 .product-box_data h2 {
   font-size: 1.9em;
   font-weight: 300;
-  margin: 0px 3px 0px 3px;
+  margin: 0px 10px 0px 10px;
   text-align: center;
   width: 100%;
-}
-
-.creador{
-  font-size: 1.7em;
 }
 
 .product-box_data span {

@@ -11,7 +11,6 @@ router.get('/searchresults', productsController.searchProducts);
 //Rutas con post
 router.post('/add', productsController.storeProduct);
 router.post('/comment/:id', productsController.storeComment);
-router.post('/id/:id', productsController.storeLike);
 router.post('/edit/:id', productsController.productEdit);
 router.post('/delete', productsController.productDelete)
 

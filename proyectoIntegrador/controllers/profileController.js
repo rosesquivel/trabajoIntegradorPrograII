@@ -54,69 +54,20 @@ let profileController = {
         }
     },
     editProfile: function(req, res){
-        let form = req.body;
-        let idUsuario = req.session.user.id;
-
-       /*  let user = {
-            username: '',
-            email: '',
-            password: '',
-            profilePicture: '',
-            bDate: '',
-            dni: '',
-            phone: '',
-        } */
-
-        /* db.User.findByPk(id)
-            .then(function(oneProfile) {
-                if (req.session.user.id != oneProfile.id) {
-                    return res.redirect('/')
-                } else {
-                    if (form.nombre == '') {
-                        user.username = oneProfile.username
-                    } else {
-                        user.username = form.nombre
-                    }
-                    if (form.password == '') {
-                        user.password = oneProfile.password
-                    } else {
-                        user.password = bcryptjs.hashSync(form.password, 10)
-                    }
-                    if (form.fechadenacimiento == '') {
-                        user.bDate = oneProfile.bDate
-                    } else {
-                        user.bDate = form.fechadenacimiento
-                    }
-                    if (form.phone == '') {
-                        user.phone = oneProfile.phone
-                    } else {
-                        user.phone = form.phone
-                    }
-                    if (form.number == '') {
-                        user.dni = oneProfile.dni
-                    } else {
-                        user.dni = form.number
-                    }
-                    if (form.mail == '') {
-                        user.email = oneProfile.email
-                    } else {
-                        user.email = form.mail
-                    }
-                    if (form.images == '') {
-                        user.profilePicture = oneProfile.profilePicture
-                    } else {
-                        user.profilePicture = form.images
-                    } */
-
-        let rel = {where: [{id: idUsuario}]}
-
-        db.User.update(form, rel)
+        let infoPerfil = req.body;
+        let id = req.session.user.id;
+        let filtrado = {
+          where : [
+            {id: id}
+          ]
+        }
+        db.User.update(infoPerfil, filtrado)
         .then(function(resultado) {
-            return res.redirect('/profile/id/' + idUsuario)
-        })
-        .catch(function(error) {
-            console.log(error);
-        })
+            req.session.user = resultado.dataValues
+            return res.redirect('/')
+        }).catch(function(error) {
+          console.log(error);
+        });
     },
     register: function(req, res){
         if (req.session.user != undefined){
@@ -159,29 +110,44 @@ let profileController = {
             res.locals.errors = errors;
             return res.render('register');
 
+        } else if (form.bDate == ''){ 
+        errors.message = 'Debes ingresar tu fecha de nacimiento'
+        res.locals.errors = errors;
+        return res.render('register');
+
+        } else if (form.phone == ''){
+        errors.message = 'Debes ingresar tu número de teléfono'
+        res.locals.errors = errors;
+        return res.render('register')
+
+        } else if (form.dni == ''){
+        errors.message = 'Debes ingresar tu número de documento'
+        res.locals.errors = errors;
+        return res.render('register')
+
         } else{
-            let profilePicture = '/images/users/user.png';
-            if (form.profilePicture != ''){
-                profilePicture = form.profilePicture;
-            }
+        let profilePicture = '/images/users/user.png';
+        if (form.profilePicture != ''){
+            profilePicture = form.profilePicture;
+        }
 
-            let newUser = {
-                username: form.username,
-                email:form.email,
-                password: bcryptjs.hashSync(form.password, 10), //encripto la contraseña
-                profilePicture: profilePicture,
-                bDate: form.bDate,
-                dni: form.dni,
-                phone: form.phone
-            };
+        let newUser = {
+            username: form.username,
+            email:form.email,
+            password: bcryptjs.hashSync(form.password, 10), //encripto la contraseña
+            profilePicture: profilePicture,
+            bDate: form.bDate,
+            dni: form.dni,
+            phone: form.phone
+        };
 
-            db.User.create(newUser)
-                .then(function(result){
-                    return res.redirect('/profile/login');
-                })
-                .catch(function(error){
-                    console.log(error);
-                })
+        db.User.create(newUser)
+            .then(function(result){
+                return res.redirect('/profile/login');
+            })
+            .catch(function(error){
+                console.log(error);
+            })
         }
     },
     login: function(req,res){

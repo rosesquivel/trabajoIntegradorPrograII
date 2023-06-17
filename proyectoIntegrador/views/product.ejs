@@ -11,7 +11,6 @@
 			<%-include('./partials/header')%>
 		<% } %>
 		
-		
 		<main>
 			<!-- Product detail -->
 			<div class="container products-wrapper">
@@ -33,12 +32,6 @@
 						<article class="col-12 col-lg-8 product-detail-info">
 							<h3 class="product-detail-description"><a href="/profile/id/<%=product.user.id%>"><%= product.user.username %></a></h3>
 							<img class="product-detail-img" src=<%=product.image %> alt="<%=product.name%>" >
-							<% if (locals.user != undefined) { %>
-								<form class="form" action="/products/id/<%=product.id%>" method="POST">
-									<input class="form-input" type="hidden" value="sí" placeholder="" name="likear">
-									<button class="likear"><i class="fa-regular fa-heart fa-beat fa-2xl emptyHeart" style="color: #5e3f43;"></i></button>
-								</form>	
-								<% } %>
 							<p class="product-detail-description">
 								<%=product.longDescription%>
 							</p>
@@ -58,14 +51,13 @@
 									</article>
 								<% } %>
 						
-
 								<% if (locals.user != undefined) { %>
 									<form class="form" action="/products/comment/<%=product.id%>" method="POST">
 										<input class="form-input" type="text" value="" placeholder="Agregar comentario" name="comment">
 										<button type="submit" class="button-send" id="sendComment">Enviar comentario</button>
 									</form>
 								<% } else{ %>
-									<button type="submit" class="button-send">Es necesario iniciar sesión para comentar</button>
+									<a href="/profile/login"><button type="submit" class="button-send">Es necesario iniciar sesión para comentar</button></a>
 								<% } %>
 							</section>
 						</div>

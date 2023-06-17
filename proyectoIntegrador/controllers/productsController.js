@@ -1,11 +1,6 @@
 const { name } = require("ejs");
-//Requiero la biblioteca necesaria para poder usar document.querySelector
-/* const { JSDOM } = require('jsdom');
-const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
-const document = dom.window.document; */
 let db = require('../database/models');
 let op = db.Sequelize.Op;
-
 
 let productsController = {
     product: function (req, res) {
@@ -27,7 +22,6 @@ let productsController = {
 
         let id = req.params.id;
 
-        //Encuentra el producto con la pk
         db.Product.findByPk(id, rel)
             .then(function (oneProduct) {
                 return res.render('product', {
@@ -40,43 +34,21 @@ let productsController = {
     },
     storeComment: function (req, res) {
         let form = req.body;
-
-        let comment = {
-            comment: '',
-            idProduct: '',
-            userId: '',
-        };
-
+        let id = req.params.id;
         let errors = {}
-        if (req.session.user == undefined) {
-            errors.message = 'Se debe loguear para comentar'
-            res.locals.errors = errors;
-            return res.render(`/products/id/${id}`);
 
-        } else if (form.comment == '') {
-            errors.message = 'Ningún campo puede quedar vacío'
-            res.locals.errors = errors;
-            return res.render(`/products/id/${id}`);
-
-        } else {
-            comment.comment = form.comment,
-            comment.idProduct = req.params.id,
-            comment.userId = req.session.user.id
-        }
-
-        db.Comment.create(comment, viewComments)
-            .then(function (result) {
-                return res.redirect(`/products/id/${req.params.id}`)
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    },
-    storeLike: function (req, res) {
-        let like = req.body.likear;
-
-        //if (like == 'yes')
-        return res.send(like)
+        let viewComments = {
+            comment: req.body.comment,
+            idProduct: req.params.id,
+            userId: req.session.user.id 
+            }
+        db.Comment.create(viewComments)
+        .then(function (result) {
+            return res.redirect(`/products/id/${id}`)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
     },
     add: function (req, res) {
         if (req.session.user == undefined) {
@@ -150,7 +122,6 @@ let productsController = {
 
     },
     productEdit: function (req, res) {
-
         let id = req.params.id;
         let form = req.body;
         let idUsuario = req.session.user.id;
@@ -162,28 +133,28 @@ let productsController = {
         db.Product.findByPk(id)
             .then(function (oneProduct) {
 
-                if (form.nombre == '') {
+                if (form.name == '') {
                     product.name = oneProduct.name
                 } else {
-                    product.name = form.nombre
+                    product.name = form.name
                 }
 
-                if (form.descripcion_detallada == '') {
+                if (form.longDescription == '') {
                     product.longDescription = oneProduct.longDescription
                 } else {
-                    product.longDescription = form.descripcion_detallada
+                    product.longDescription = form.longDescription
                 }
 
-                if (form.descripcion_breve == '') {
+                if (form.shortDescription == '') {
                     product.shortDescription = oneProduct.shortDescription
                 } else {
-                    product.shortDescription = form.descripcion_breve
+                    product.shortDescription = form.shortDescription
                 }
 
-                if (form.images == '') {
+                if (form.image == '') {
                     product.image = oneProduct.image
                 } else {
-                    product.image = form.images
+                    product.image = form.image
                 }
 
                 let rel = {where: {id: id}}
@@ -233,20 +204,19 @@ let productsController = {
     },
     productDelete: function (req, res) {
         let idProduct = req.body.id;
-        // res.send(idProduct)
-        let product = {
-            where: {
-                id: idProduct
-            },
-            force: true
-        };
-
-        db.Product.destroy(product)
-            .then(function (results) {
-                return res.redirect(`/profile/id/${req.session.user.id}`)
+       
+        db.Comment.destroy(
+            {where: {idProduct: idProduct}})
+            .then (function (results){
+                db.Product.destroy(
+                { where: { id: idProduct} }
+                )
+            })
+            .then(function () {
+                res.redirect('/profile/id/' + req.session.user.id)
             })
             .catch(function (error) {
-                console.log(error);
+                res.send(error);
             })
     }
 };
